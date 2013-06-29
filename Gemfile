@@ -20,6 +20,7 @@ group :test do
   
 end
 
+gem 'bootstrap-sass'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
