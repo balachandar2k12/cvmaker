@@ -4,9 +4,11 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 gem 'mysql2'
-gem 'devise'
+gem 'devise', '3.0.0.rc'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
+gem 'rails_admin', :git => "https://github.com/sferik/rails_admin.git", :branch=>"master"
+
 group :development do
   gem "better_errors"
 end

@@ -7,7 +7,7 @@ development:
   adapter: mysql2
   database: db_cv_builder_dev
   username: root
-  password: surendar
+  password: root
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -17,12 +17,12 @@ test:
   adapter: mysql2
   database: db_cv_builder_test
   username: root
-  password: surendar
+  password: root
   host: localhost
 
 production:
   adapter: mysql2
   database: db_cv_builder_prod
   username: root
-  password: surendar
+  password: root
   host: localhost
