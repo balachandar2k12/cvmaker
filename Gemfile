@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 gem 'mysql2'
-gem 'devise'
+
+gem 'devise', '3.0.0.rc'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 group :development do
