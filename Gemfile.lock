@@ -165,6 +165,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  bootstrap-sass
   coffee-rails (~> 4.0.0)
   devise (= 3.0.0.rc)
   jbuilder (~> 1.2)
