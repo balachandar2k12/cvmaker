@@ -23,6 +23,11 @@ class CollegesController < ApplicationController
   end
   
   def create_student
+    if current_college.college_setting.present?
+      if(current_college.college_setting.default_password.present?)
+      params[:student][:password] = current_college.college_setting.default_password
+      end
+    end
      @student = current_college.students.create(student_params)
     if @student.persisted?
      redirect_to(add_student_path(), :notice =>  "Student Created Successfully")
