@@ -5,5 +5,6 @@ class College < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
-  has_many :students       
+  has_many :students 
+  has_one :college_setting      
 end

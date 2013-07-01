@@ -1,9 +1,13 @@
 CvBuilder::Application.routes.draw do
   root to: 'home#index'
   devise_for :colleges
+  
   resources :student
    get "/colleges/add_student", :to => "colleges#add_student", :as => 'add_student'
    post "/colleges/add_student", :to => "colleges#create_student", :as => 'create_student'
+   get "/colleges/default_password", :to => "colleges#new_default_password", :as => 'new_default_password'
+   post "/colleges/default_password", :to => "colleges#create_default_password", :as => 'create_default_password'
+   get "/colleges", to: "colleges#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

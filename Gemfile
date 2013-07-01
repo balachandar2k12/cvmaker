@@ -47,6 +47,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

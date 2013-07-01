@@ -1,9 +1,9 @@
 <h3>Add A Student Account</h3>
 <%= form_for(@student, :url => create_student_path(), :method => :post) do |f| %>
 <% if @student.errors.any? %>
-<%= pluralize(@student.errors.count, "error") %>
+<%= pluralize(@student.errors.count, "error") %><br />
 <% @student.errors.full_messages.each do |msg| %>
-<%= msg %>
+<%= msg %><br />
 
 <% end %>
 <% end %>
