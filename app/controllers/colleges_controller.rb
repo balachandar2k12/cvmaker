@@ -7,12 +7,17 @@ class CollegesController < ApplicationController
   end
   
   def new_subscription
-    
+    @subscription = current_college.subscription.new
     
   end
   
   def create_subscription
-    
+    @subscription = current_college.subscription.new(params[:subscription].permit(:count))
+    if @subscription.save
+      redirect_to new_subscription_path(), :notice => "Subscription Request Sent Successfully"
+    else
+      render :action => "new_subscription"
+    end
     
   end
   
@@ -57,6 +62,34 @@ class CollegesController < ApplicationController
       render :action => "new_default_password"
     end
     
+  end
+  
+  def new_import
+    
+  
+  end
+  
+  
+  def create_import
+    begin
+  if current_college.college_setting.present?
+      if(current_college.college_setting.default_password.present?)
+         if Student.import(params[:file], current_college)
+         redirect_to new_import_path, notice: "Students Successfully Imported."
+         else
+           redirect_to new_import_path, notice: "There is some error in importing your excel file. Some or full records may not be entered"
+         end
+       else
+        redirect_to(new_import_path(), :notice => "Please set Default Password")
+      end
+      
+     else
+       redirect_to(new_import_path(), :notice => "Please set Default Password") 
+      
+    end
+  rescue Exception => msg 
+     redirect_to(new_import_path(), :notice => "#{msg}") 
+  end
   end
   
   private
