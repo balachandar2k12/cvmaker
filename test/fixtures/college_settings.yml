@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  college_id: MyString
+  default_password: MyString
+
+two:
+  college_id: MyString
+  default_password: MyString

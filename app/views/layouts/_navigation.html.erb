@@ -5,16 +5,17 @@
     </li>
   <% else %>
     <li>
-    <%= link_to 'Login', new_college_session_path %>
+    <%= link_to 'College Login', new_college_session_path %> or
+    <%= link_to 'Sign up', new_college_registration_path %>
     </li>
   <% end %>
-  <% if college_signed_in? %>
+  <% if student_logged_in? %>
     <li>
-    <%= link_to 'Edit account', edit_college_registration_path %>
+    <%= link_to 'Logout', student_logout_path, :method=>'delete' %>
     </li>
   <% else %>
     <li>
-    <%= link_to 'Sign up', new_college_registration_path %>
+    <%= link_to 'Student Login', student_new_login_path %>
     </li>
   <% end %>
 </ul>

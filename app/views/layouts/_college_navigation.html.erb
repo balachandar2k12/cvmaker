@@ -1,0 +1,23 @@
+<ul class="nav">
+  <% if college_signed_in? %>
+    <li>
+    <%= link_to 'Logout', destroy_college_session_path, :method=>'delete' %>
+    </li>
+  <% else %>
+    <li>
+    <%= link_to 'Login', new_college_session_path %>
+    </li>
+  <% end %>
+  <% if college_signed_in? %>
+    <li>
+    <%= link_to 'Edit account', edit_college_registration_path %>
+    </li>
+  <% else %>
+    <li>
+    <%= link_to 'Sign up', new_college_registration_path %>
+    </li>
+  <% end %>
+</ul>
+
+<%=link_to "Add Student", add_student_path%><br />
+<%= link_to "Set Default Password", new_default_password_path%><br />

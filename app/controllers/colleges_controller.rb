@@ -1,5 +1,6 @@
 class CollegesController < ApplicationController
   before_action :authenticate_college!
+  layout "college"
   def index
     
     
@@ -22,12 +23,40 @@ class CollegesController < ApplicationController
   end
   
   def create_student
-    if current_college.students.create(student_params)
-      redirect_to(add_student_path(), :notice =>  "Student Created Successfully")
+    if current_college.college_setting.present?
+      if(current_college.college_setting.default_password.present?)
+      params[:student][:password] = current_college.college_setting.default_password
+      end
+    end
+     @student = current_college.students.create(student_params)
+    if @student.persisted?
+     redirect_to(add_student_path(), :notice =>  "Student Created Successfully")
+     #render :action => "add_student"
     else
-      render :action => "new"
+      render :action => "add_student"
     end
   
+  end
+  
+  def new_default_password
+    @default_password = CollegeSetting.new
+    
+  end
+  
+  def create_default_password
+    if(current_college.college_setting.present?)
+      @default_password = current_college.college_setting.update(params[:college_setting].permit(:default_password))
+     else
+     @default_password = current_college.build_college_setting(params[:college_setting].permit(:default_password))
+     @default_password = @default_password.save
+    end 
+    
+    if @default_password
+      redirect_to(colleges_path(), :notice =>  "Password Created Successfully")
+    else
+      render :action => "new_default_password"
+    end
+    
   end
   
   private

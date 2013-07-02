@@ -6,6 +6,8 @@ gem 'rails', '4.0.0'
 gem 'mysql2'
 
 gem 'devise', '3.0.0.rc'
+
+gem 'wicked_pdf'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 gem 'rails_admin', :git => "https://github.com/sferik/rails_admin.git", :branch=>"master"
@@ -48,6 +50,8 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

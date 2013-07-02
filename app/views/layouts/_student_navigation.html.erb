@@ -1,0 +1,11 @@
+<ul class="nav">
+  <% if student_logged_in? %>
+    <li>
+    <%= link_to 'Logout', student_logout_path, :method=>'delete' %>
+    </li>
+  <% else %>
+    <li>
+    <%= link_to 'Login', student_new_login_path %>
+    </li>
+  <% end %>
+ </ul>
