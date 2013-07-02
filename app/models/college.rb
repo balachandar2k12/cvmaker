@@ -6,5 +6,6 @@ class College < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   has_many :students 
-  has_one :college_setting      
+  has_one :college_setting 
+  has_many :subscription     
 end

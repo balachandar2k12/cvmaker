@@ -7,12 +7,17 @@ class CollegesController < ApplicationController
   end
   
   def new_subscription
-    
+    @subscription = current_college.subscription.new
     
   end
   
   def create_subscription
-    
+    @subscription = current_college.subscription.new(params[:subscription].permit(:count))
+    if @subscription.save
+      redirect_to new_subscription_path(), :notice => "Subscription Request Sent Successfully"
+    else
+      render :action => "new_subscription"
+    end
     
   end
   
