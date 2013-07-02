@@ -59,6 +59,28 @@ class CollegesController < ApplicationController
     
   end
   
+  def new_import
+    
+  
+  end
+  
+  
+  def create_import
+  if current_college.college_setting.present?
+      if(current_college.college_setting.default_password.present?)
+         Student.import(params[:file], current_college)
+         redirect_to new_import_path, notice: "Students Successfully Imported."
+       else
+        redirect_to(new_import_path(), :notice => "Please set Default Password")
+      end
+      
+     else
+       redirect_to(new_import_path(), :notice => "Please set Default Password") 
+      
+    end
+  
+  end
+  
   private
    def student_params
       params.require(:student).permit(:name, :email, :register_no, :password)
