@@ -68,8 +68,11 @@ class CollegesController < ApplicationController
   def create_import
   if current_college.college_setting.present?
       if(current_college.college_setting.default_password.present?)
-         Student.import(params[:file], current_college)
+         if Student.import(params[:file], current_college)
          redirect_to new_import_path, notice: "Students Successfully Imported."
+         else
+           redirect_to new_import_path, notice: "There is some error in importing your excel file. Some or full records may not be entered"
+         end
        else
         redirect_to(new_import_path(), :notice => "Please set Default Password")
       end

@@ -28,7 +28,10 @@ class Student < ActiveRecord::Base
     row["college_id"] = current_college.id
     
      Rails.logger.warn "added row: #{row}"
-    Student.create! row
+     student = Student.new(row)
+      return student.save
+      
+    
    end
   end
   
