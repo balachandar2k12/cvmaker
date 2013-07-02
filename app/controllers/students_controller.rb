@@ -1,10 +1,12 @@
 class StudentsController < ApplicationController
   before_action :authenticate, except: [:new_login, :create_login]
   layout "student"
+  
   def index
     
     
   end
+
  def create_login
    
     if student = Student.authenticate(params[:register_no], params[:password])

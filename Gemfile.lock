@@ -1,5 +1,10 @@
 GIT
-<<<<<<< HEAD
+  remote: git://github.com/alexdunae/validates_email_format_of.git
+  revision: 46b832f7c778cc73f45ebc84cffba03c33294928
+  specs:
+    validates_email_format_of (1.5.3)
+
+GIT
   remote: https://github.com/sferik/rails_admin.git
   revision: fef978f2c5dcc247c9f0b9728c82481680b311e4
   branch: master
@@ -19,12 +24,6 @@ GIT
       remotipart (~> 1.0)
       safe_yaml (~> 0.9)
       sass-rails (~> 4.0)
-
-  remote: git://github.com/alexdunae/validates_email_format_of.git
-  revision: 46b832f7c778cc73f45ebc84cffba03c33294928
-  specs:
-    validates_email_format_of (1.5.3)
-
 
 GEM
   remote: https://rubygems.org/
