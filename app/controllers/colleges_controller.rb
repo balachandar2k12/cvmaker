@@ -66,6 +66,7 @@ class CollegesController < ApplicationController
   
   
   def create_import
+    begin
   if current_college.college_setting.present?
       if(current_college.college_setting.default_password.present?)
          if Student.import(params[:file], current_college)
@@ -81,7 +82,9 @@ class CollegesController < ApplicationController
        redirect_to(new_import_path(), :notice => "Please set Default Password") 
       
     end
-  
+  rescue Exception => msg 
+     redirect_to(new_import_path(), :notice => "#{msg}") 
+  end
   end
   
   private

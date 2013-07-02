@@ -6,7 +6,8 @@ class Student < ActiveRecord::Base
   validates :email, :email_format => {:message => 'is not looking good'}
   validates :password, :presence => { :message => "is empty . Opps You Did'nt Added Default Password For Students" }
   before_save :encrypt_new_password
-    
+  #validates_attachment :file, :content_type => {:content_type => ['text/csv','text/comma-separated-values','text/csv','application/csv','application/excel','application/vnd.ms-excel','application/vnd.msexcel']}
+  #validates_attachment :file, content_type: "application/pdf"
   def self.authenticate(registerno, password)
     student  =  Student.where(register_no: registerno).take
     return student if student && student.authenticated?(password)
