@@ -9,11 +9,10 @@
 <body>
  <div id="container" class="container">
       <header>
-        
+        <%= render 'layouts/student_navigation' %>
         <%= render 'layouts/messages' %>
       </header>
       <div id="main" role="main">
-      	<%= render 'layouts/college_navigation' %>
         <%= yield %>
       </div>
       <footer>

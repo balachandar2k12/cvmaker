@@ -7,8 +7,8 @@ class Student < ActiveRecord::Base
   validates :password, :presence => { :message => "is empty . Opps You Did'nt Added Default Password For Students" }
   before_save :encrypt_new_password
     
-  def self.authenticate(register_no, password)
-    student  =  Student.where(:register_no => register_no).first
+  def self.authenticate(registerno, password)
+    student  =  Student.where(register_no: registerno).take
     return student if student && student.authenticated?(password)
   end
  

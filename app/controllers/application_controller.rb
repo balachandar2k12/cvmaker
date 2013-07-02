@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     # Returns the currently logged in user or nil if there isn't one
     def current_student
       return unless session[:student_id]
-      @current_student ||= Student.where(:id => session[:student_id]) 
+      @current_student ||= Student.where(:id => session[:student_id]).take 
     end
  
     # Make current_user available in templates as a helper
@@ -29,18 +29,18 @@ class ApplicationController < ActionController::Base
     # Filter method to enforce a login requirement
     # Apply as a before_filter on any controller you want to protect
     def authenticate
-      logged_in? ? true : access_denied
+      student_logged_in? ? true : access_denied
     end
  
     # Predicate method to test for a logged in user    
-    def logged_in?
+    def student_logged_in?
       current_student.is_a? Student
     end
  
     # Make logged_in? available in templates as a helper
-    helper_method :logged_in?
+    helper_method :student_logged_in?
  
     def access_denied
-      redirect_to student_login_path, :notice => "Please log in to continue" and return false
+      redirect_to student_new_login_path, :notice => "Please log in to continue" and return false
     end
 end
