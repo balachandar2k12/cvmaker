@@ -13,11 +13,12 @@ CvBuilder::Application.routes.draw do
    post "/students/login", to: "students#create_login", :as => 'student_create_login' 
    get  "/students", to: "students#index", :as => 'stugsdents' 
    delete "/students/logout", to: "students#logout", :as => 'student_logout'
-
-   get "/colleges/import", to: "colleges#new_import", :as => 'new_import'
-    post "/colleges/import", to: "colleges#create_import", :as => 'create_import'
-    get "/colleges/subscription", to: "colleges#new_subscription", :as => 'new_subscription'
-    post "/colleges/subscription", to: "colleges#create_subscription", :as => 'create_subscription'
+  
+  get "/colleges/import", to: "colleges#new_import", :as => 'new_import'
+  post "/colleges/import", to: "colleges#create_import", :as => 'create_import'
+  get "/colleges/subscription", to: "colleges#new_subscription", :as => 'new_subscription'
+  post "/colleges/subscription", to: "colleges#create_subscription", :as => 'create_subscription'
+  get "/colleges", to: "colleges#dashboard", :as => 'colleges_dashboard'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

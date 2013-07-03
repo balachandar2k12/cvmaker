@@ -1,3 +1,4 @@
+<div class=""></div>
 <ul class="nav">
   <% if college_signed_in? %>
     <li>
@@ -19,8 +20,17 @@
   <% end %>
 </ul>
 
-<%=link_to "Add Student", add_student_path%><br />
-<%= link_to "Set Default Password", new_default_password_path%><br />
-<%= link_to "Excel Import Students", new_import_path%><br />
-<%= link_to "Subscription", new_subscription_path%><br />
+<div class="row" >
+  <div class="span12"><div id="admin_nav">
+    <div id="admin_nav_header">header </div>
+    <div class="row" id="admin_nav_body">
+       <div class="span3"></div>
+       <div class="span1 big_button"><%=link_to "", add_student_path,:id=>"add_student"%></div>
+       <div class="span1 big_button"><%= link_to "", new_default_password_path, :id=>"add_def_pwd" %></div>
+       <div class="span1 big_button"><%= link_to "", new_import_path, :id=>"add_csv_upload" %></div>
+       <div class="span1 big_button"><%= link_to "", new_subscription_path, :id=>"add_subscription" %></div>
+       <div class="span4"></div>
 
+       </div> 
+  </div>
+</div>

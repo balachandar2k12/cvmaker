@@ -29,3 +29,6 @@ class StudentsController < ApplicationController
   end
 
 end
+
+
+sudo -u postgres psql < /usr/share/postgresql/9.1/contrib/adminpack.sql
