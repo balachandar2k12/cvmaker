@@ -14,7 +14,7 @@
  #admin_nav{
  	border-radius: 5px;
 	min-height: 165px;
-	background: rgba(179, 229, 248, 0.83);
+	background: rgba(236, 247, 252, 0.93);
 	padding: 0px 0px 0px 0px;
 	text-align: center;
 }
@@ -37,7 +37,7 @@ border-radius: 5px 5px 0 0;
 }
 
 #admin_nav_body{
-	padding-top: 15px
+	padding-top: 5px
 }
 
 .big_button{

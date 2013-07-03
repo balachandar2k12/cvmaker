@@ -34,3 +34,30 @@
        </div> 
   </div>
 </div>
+</div>
+
+<div class="row" >
+  <div class="span12"><div id="admin_nav">
+    <div id="admin_nav_header">Statistics</div>
+    <div class="row" id="admin_nav_body">
+     <div id="chart7" style="margin-top:20px; margin-left:100px; width:760px; height:300px;"></div>
+    </div> 
+  </div>
+ </div>
+</div>
+
+
+
+
+<script class="code" type="text/javascript">$(document).ready(function(){
+  jQuery.jqplot.config.enablePlugins = true;
+  plot7 = jQuery.jqplot('chart7',
+    [[['MCA', 9],['CSE', 8], ['MECH', 7],['CIVIL', 6],['ECE', 5], ['IT', 4], ['EEE', 3], ['BSc', 2]]], 
+    {
+      title: 'Usage Details', 
+      seriesDefaults: {shadow: true, renderer: jQuery.jqplot.PieRenderer, rendererOptions: { showDataLabels: true} }, 
+      legend: { show:true }
+    }
+  );
+});
+</script>

@@ -10,15 +10,18 @@
 <body>
  <div id="container" class="container">
       <header>
-        
         <%= render 'layouts/messages' %>
       </header>
+
       <div id="main" role="main">
       	<%= render 'layouts/college_navigation' %>
-        <%= yield %>
+       <div class="row">
+        <div class="span10">
+          <%= yield %>
+        </div>
+       </div>
+        
       </div>
-      <footer>
-      </footer>
     </div> <!--! end of #container -->
 </body>
 </html>
