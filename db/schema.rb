@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130701062611) do
+ActiveRecord::Schema.define(version: 20130705070357) do
 
   create_table "college_settings", force: true do |t|
     t.string   "college_id"
@@ -41,6 +41,27 @@ ActiveRecord::Schema.define(version: 20130701062611) do
   add_index "colleges", ["email"], name: "index_colleges_on_email", unique: true, using: :btree
   add_index "colleges", ["reset_password_token"], name: "index_colleges_on_reset_password_token", unique: true, using: :btree
 
+  create_table "cvs", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "template_id"
+    t.text     "content"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mercury_images", force: true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "statistics", force: true do |t|
     t.string   "login_date"
     t.integer  "college_id"
@@ -61,6 +82,11 @@ ActiveRecord::Schema.define(version: 20130701062611) do
     t.datetime "updated_at"
   end
 
+  create_table "students_templates", force: true do |t|
+    t.integer "student_id"
+    t.integer "template_id"
+  end
+
   create_table "subscriptions", force: true do |t|
     t.integer  "college_id"
     t.integer  "count"
@@ -69,6 +95,17 @@ ActiveRecord::Schema.define(version: 20130701062611) do
     t.string   "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "templates", force: true do |t|
+    t.string   "title"
+    t.integer  "user_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "resume_file_name"
+    t.string   "resume_content_type"
+    t.integer  "resume_file_size"
+    t.datetime "resume_updated_at"
   end
 
 end

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1.0">
+    <%= csrf_meta_tags %>
+    <title>Mercury Editor</title>
+    <%= stylesheet_link_tag    'mercury' %>
+    <%= javascript_include_tag 'jquery-1.7', 'mercury' %>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      // Set to the url that you want to save any given page to, leave null for default handling.
+      var saveUrl = "/save_template/"+ <%= params[:template_id]%>;
+      <%= "window.cv_id = #{params[:id]};" if params[:id] %>
+      // Instantiate the PageEditor
+      new Mercury.PageEditor(saveUrl, {
+        saveStyle:  "json", // 'form', or 'json' (default json)
+        saveMethod: "POST", // 'PUT', or 'POST', (create, vs. update -- default PUT)
+        visible:    true  // boolean - if the interface should start visible or not
+      });
+      Mercury.PageEditor.prototype.save = function() {
+      var url =saveUrl ? saveUrl : this.iframeSrc();
+      var data_to_be_sent = {};
+      data_to_be_sent.content = escape($("iframe").contents().find("#template_content").html());
+      if(window.cv_id!=null)
+      data_to_be_sent.id = window.cv_id;
+      var method = (this.options.saveMethod == 'PUT') ? 'PUT' : 'POST';
+      console.log(data_to_be_sent);
+      jQuery.ajax(url, {
+      type: method,
+      dataType: this.options.saveDataType || 'json',
+      data: data_to_be_sent,
+      success: function(data) {
+      Mercury.changes = false;
+      Mercury.trigger('saved');
+      window.cv_id = data.id;
+      },
+      error: function() {
+      alert("Mercury was unable to  to url:\n"+url);
+      }
+      });
+      };
+    </script>
+  </body>
+</html>

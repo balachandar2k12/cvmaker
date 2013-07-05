@@ -1,0 +1,137 @@
+	<script type="text/javascript">
+	WebFontConfig = {
+		google: { families: [ 'Nova+Round::latin', 'Michroma::latin', 'Oxygen+Mono::latin', 'PT+Serif+Caption::latin', 'Wire+One::latin', 'Anton::latin', 'Merriweather+Sans::latin', 'Fjalla+One::latin' ] }
+	};
+	(function() {
+		var wf = document.createElement('script');
+		wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+		'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+		wf.type = 'text/javascript';
+		wf.async = 'true';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(wf, s);
+	})(); 
+	$(document).ready( function() {
+		$(".ui-progressbar-value").remove();
+    $(".progressBar").each(function(){
+    	var pres_val = ($(this).attr("aria-valuenow"))? parseInt($(this).attr("aria-valuenow")):60;
+    	console.log(pres_val);
+  		$(this).progressbar({"value": pres_val});
+    });
+	  $(document).on("click",".progressBar",function(e){
+        var maxWidth = $(this).css("width").slice(0, -2); //remove the 'px' from the css-value
+        var clickPos = e.pageX - this.offsetLeft; //where have you clicked in the progressbar?
+        var percentage = Math.round(clickPos / maxWidth * 100); //convert it to a percentage
+       $(this).find(".ui-progressbar-value").animate(
+					{
+					  width: "'"+ percentage+"%'"
+					}, 5000);
+        $(this).progressbar({"value": percentage});
+    });
+	});
+	</script>
+	<link rel="stylesheet" href="/templates/template1/style.css" media="all">
+	<div id="template_content"><% if @cv %>
+		<%=raw URI.unescape(@cv.content)%>
+	<% else %>
+		<div id="header" >
+			<div class="container" >
+				<h3 class="heading" data-mercury="full" id="heading_name">Enter Your Name here</h3>
+				<div class="tagline" id="tag_line" data-mercury="full">Tag line</div>
+			</div>
+		</div>
+		<div id="main">
+			<div class="container">
+				<div class="row">
+					<div class="span2 profile_image">
+						<img src="/templates/template1/img/profile.png" data-mercury="image">
+						<p class="photo_fade"></p>
+					</div>
+					<div class="span10">
+						<p data-mercury="full" id="career_objective">Career objective</p>
+						<p data-mercury="full">An MBA Graduate with 4 years of experience into teaching and campus placements is looking for an opportunity.</p>
+						<div class="contact_info" data-mercury="full">
+						<ul>
+							<li>user@user.com</li>
+							<li>+918756492311</li>
+							<li>www.google.com</li>
+						</ul></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span8">
+						<div class="category_field">
+							<div class="category_heading">
+								<h3  data-mercury="full">Experience</h3>
+								<div class="blue_bar"></div>
+							</div>
+							<div data-mercury="full" class="category_content">
+								<ul>
+									<li>Working as an Assistant Placement Officer @ VIT UNIVERSITY since 1st June 2011 to till now ( 24 Months)</li>
+								</ul>
+							</div>
+						</div>
+						<div class="category_shadow"></div>
+						</div>
+						<div class="span4">
+							<div class="category_field">
+							<div class="category_heading">
+								<h3 id="skills" data-mercury="full">SKILLS</h3>
+								<div class="blue_bar"></div>
+							</div>
+							<div class="category_content">
+								<div class="skill_set">
+									<p  data-mercury="full">Training</p>
+									<p class="progressBar"></p>
+								</div>
+								<div class="skill_set">
+									<p data-mercury="full">Management</p>
+									<p class="progressBar"></p>
+								</div>
+								<div class="skill_set">
+									<p data-mercury="full">Consulting</p>
+									<p class="progressBar"></p>
+								</div>
+								<div class="skill_set">
+									<p data-mercury="full">Social Skills</p>
+									<p class="progressBar"></p>
+								</div>
+								<div class="skill_set">
+									<p data-mercury="full">Communication</p>
+									<p class="progressBar"></p>
+								</div>
+							</div>
+							 </div>
+							<div class="category_shadow"></div>
+						</div>
+				</div>
+				<div class="row">
+					<div class="span8">
+						<div class="category_field">
+							<div class="category_heading">
+								<h3 data-mercury="full">Education</h3>
+								<div class="blue_bar"></div>
+							</div>
+							<div class="category_content" data-mercury="full">
+								<ul>
+									<li>Working as an Assistant Placement Officer @ VIT UNIVERSITY since 1st June 2011 to till now ( 24 Months)</li>
+								</ul>
+							</div>
+						</div>
+						<div class="category_shadow"></div>
+					</div>
+					<div class="span4">
+						<div class="category_field">
+							<div class="category_heading">
+								<h3 data-mercury="full">SKILLS</h3>
+								<div class="blue_bar"></div>
+							</div>
+							<div class="category_content">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>

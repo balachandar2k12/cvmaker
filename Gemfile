@@ -36,7 +36,6 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
-gem 'paperclip'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -58,8 +57,12 @@ end
 
 gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
 
+#mercury for inline editor
+gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
+
+gem 'jquery-migrate-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
