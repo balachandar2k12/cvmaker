@@ -4,6 +4,14 @@ GIT
   specs:
     validates_email_format_of (1.5.3)
 
+GIT
+  remote: https://github.com/jejacks0n/mercury.git
+  revision: d065b2c31b895af03749254b521f0c0ee18fb25a
+  specs:
+    mercury-rails (0.9.0)
+      coffee-rails (>= 3.2.2)
+      railties (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -159,6 +167,7 @@ DEPENDENCIES
   devise (= 3.0.0.rc)
   jbuilder (~> 1.2)
   jquery-rails
+  mercury-rails!
   mysql2
   paperclip
   rails (= 4.0.0)

@@ -1,4 +1,6 @@
 CvBuilder::Application.routes.draw do
+  mount Mercury::Engine => '/'
+  #Mercury::Engine.routes
   root to: 'home#index'
   devise_for :colleges
   
@@ -16,6 +18,7 @@ CvBuilder::Application.routes.draw do
     post "/colleges/import", to: "colleges#create_import", :as => 'create_import'
     get "/colleges/subscription", to: "colleges#new_subscription", :as => 'new_subscription'
     post "/colleges/subscription", to: "colleges#create_subscription", :as => 'create_subscription'
+    get  "/students/pdf", to: "students#create_pdf", :as => 'create_pdf'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

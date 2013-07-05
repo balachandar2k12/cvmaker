@@ -39,6 +39,8 @@ gem 'paperclip'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'mercury-rails',  :git => "https://github.com/jejacks0n/mercury.git"
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
