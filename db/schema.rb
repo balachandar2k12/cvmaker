@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20130705070357) do
   add_index "colleges", ["email"], name: "index_colleges_on_email", unique: true, using: :btree
   add_index "colleges", ["reset_password_token"], name: "index_colleges_on_reset_password_token", unique: true, using: :btree
 
+<<<<<<< HEAD
   create_table "cvs", force: true do |t|
     t.integer  "student_id"
     t.integer  "template_id"
@@ -53,6 +54,8 @@ ActiveRecord::Schema.define(version: 20130705070357) do
     t.datetime "updated_at"
   end
 
+=======
+>>>>>>> mercury-test
   create_table "mercury_images", force: true do |t|
     t.string   "image_file_name"
     t.string   "image_content_type"

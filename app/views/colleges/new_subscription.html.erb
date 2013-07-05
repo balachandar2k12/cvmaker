@@ -1,6 +1,6 @@
 <%=form_for(@subscription, url: create_subscription_path, method: :post) do |f|%>
 <% if @subscription.errors.any?%>
-<%= @subscription.errors.full_messages do |msg|%>
+<% @subscription.errors.full_messages.each do |msg|%>
 <%=msg%><br />
 <%end%>
 <%end%>

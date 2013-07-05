@@ -323,11 +323,11 @@ window.Mercury = {
     //
     // An example of changing how saving works:
     //
-        // save: function() {
-        //   // var data = top.JSON.stringify(this.serialize(), null, '  ');
-        //   // var content = '<textarea style="width:500px;height:200px" wrap="off">' + data + '</textarea>';
-        //   // Mercury.modal(null, {title: 'Saving', closeButton: true, content: content})
-        // }
+    //     save: function() {
+    //       var data = top.JSON.stringify(this.serialize(), null, '  ');
+    //       var content = '<textarea style="width:500px;height:200px" wrap="off">' + data + '</textarea>';
+    //       Mercury.modal(null, {title: 'Saving', closeButton: true, content: content})
+    //     }
     //
     // This is a nice way to add functionality, when the behaviors aren't region specific.  These can be triggered by a
     // button, or manually with `Mercury.trigger('action', {action: 'barrelRoll'})`
@@ -446,5 +446,5 @@ window.Mercury = {
   // ## Debug Mode
   //
   // Turning debug mode on will log events and other various things (using console.debug if available).
-  debug: false,
+  debug: false
 };
