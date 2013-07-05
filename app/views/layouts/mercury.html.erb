@@ -21,7 +21,7 @@
       Mercury.PageEditor.prototype.save = function() {
       var url =saveUrl ? saveUrl : this.iframeSrc();
       var data_to_be_sent = {};
-      data_to_be_sent.content = escape($("iframe").contents().find("#template_content").html());
+      data_to_be_sent.content = escape($("iframe").contents().find("#template_content").html().replace(/contenteditable="true"/g,""));
       if(window.cv_id!=null)
       data_to_be_sent.id = window.cv_id;
       var method = (this.options.saveMethod == 'PUT') ? 'PUT' : 'POST';

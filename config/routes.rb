@@ -5,7 +5,7 @@ CvBuilder::Application.routes.draw do
   mount Mercury::Engine => '/'
   root to: 'home#index'
   devise_for :colleges
-  
+  get "/get_pdf" , :to =>"templates#pdf_crowd"
   post "/save_template/:template_id", :to => "templates#save"
   get "/colleges/add_student", :to => "colleges#add_student", :as => 'add_student'
   post "/colleges/add_student", :to => "colleges#create_student", :as => 'create_student'
@@ -18,6 +18,7 @@ CvBuilder::Application.routes.draw do
   delete "/students/logout", to: "students#logout", :as => 'student_logout'
 
   get "/template/:template_id(/:id)", to: "templates#index"
+    get "/show/:template_id(/:id)", to: "templates#show"
   get "/colleges/import", to: "colleges#new_import", :as => 'new_import'
   post "/colleges/import", to: "colleges#create_import", :as => 'create_import'
   get "/colleges/subscription", to: "colleges#new_subscription", :as => 'new_subscription'

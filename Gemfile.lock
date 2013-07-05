@@ -132,6 +132,7 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
+    pdfcrowd (2.4.0)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-pjax (0.7.0)
@@ -214,6 +215,7 @@ DEPENDENCIES
   mercury-rails!
   mysql2
   paperclip!
+  pdfcrowd
   rails (= 4.0.0)
   rails_admin!
   roo

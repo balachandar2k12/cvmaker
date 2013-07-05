@@ -66,6 +66,7 @@ gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
 
 gem 'jquery-migrate-rails'
 
+gem "pdfcrowd"
 # Use unicorn as the app server
 # gem 'unicorn'
 

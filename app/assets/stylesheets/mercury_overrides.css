@@ -16,7 +16,8 @@ html { -webkit-text-size-adjust: none; }
   background-image: url(/assets/mercury/toolbar/primary/inspectorpanel.png);
   overflow: hidden;
 }
-[data-mercury] {
+*[data-mercury] {
 min-height: 10px;
 outline: none;
+overflow: visible !important;
 }

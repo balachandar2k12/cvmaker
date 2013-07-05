@@ -2,6 +2,9 @@ body{
 		font-family: 'Merriweather Sans';
 		padding-top:0px;
 	}
+	*[data-mercury]{
+		overflow: visible !important;
+	}
 #header{
 	background:#000000;
 	min-height: 130px;
