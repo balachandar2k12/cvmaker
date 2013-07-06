@@ -10,7 +10,6 @@ set :rails_env, "development" #added for delayed job
 set :rvm_type, :system
 set :rvm_path, '/usr/local/rvm'
 
-
 after 'deploy:update_code' do
   # run "cd #{release_path}; RAILS_ENV=production rake assets:precompile"
   run "cd #{release_path};"

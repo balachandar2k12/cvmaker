@@ -80,6 +80,12 @@ GEM
     bootstrap-sass (2.3.2.0)
       sass (~> 3.2)
     builder (3.1.4)
+    capistrano (2.15.4)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -104,6 +110,7 @@ GEM
       railties (>= 3.2, < 5.0)
     haml (4.0.3)
       tilt
+    highline (1.6.19)
     hike (1.2.3)
     i18n (0.6.4)
     jbuilder (1.4.2)
@@ -129,6 +136,13 @@ GEM
     multi_json (1.7.7)
     mysql2 (0.3.11)
     nested_form (0.3.2)
+    net-scp (1.1.1)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.7)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
@@ -207,6 +221,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   bootstrap-sass
+  capistrano
   coffee-rails (~> 4.0.0)
   devise (= 3.0.0.rc)
   jbuilder (~> 1.2)
