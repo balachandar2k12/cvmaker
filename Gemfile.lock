@@ -177,6 +177,9 @@ GEM
       spreadsheet (> 0.6.4)
     ruby-ole (1.2.11.7)
     rubyzip (0.9.9)
+    rvm (1.11.3.7)
+    rvm-capistrano (1.3.0)
+      capistrano (>= 2.0.0)
     safe_yaml (0.9.3)
     sass (3.2.9)
     sass-rails (4.0.0)
@@ -234,6 +237,8 @@ DEPENDENCIES
   rails (= 4.0.0)
   rails_admin!
   roo
+  rvm
+  rvm-capistrano
   sass-rails (~> 4.0.0)
   sdoc
   turbolinks

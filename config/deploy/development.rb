@@ -1,7 +1,7 @@
 require "rvm/capistrano"
 require "bundler/capistrano"
 
-server "108.161.131.194", :app, :web, :db, :primary => true
+server "codingmart.com", :app, :web, :db, :primary => true
 set :deploy_to, "/var/www/cvmaker/"
 set :branch, 'merge_template'
 set :scm_verbose, true
