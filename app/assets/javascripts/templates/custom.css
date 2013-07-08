@@ -1,0 +1,61 @@
+body{
+	line-height: 25px;
+	font-size: 12pt;
+	font-family: "Calibri";
+}
+.main{
+	padding-top: 65px;
+	border: 1px #000 solid;
+}
+.linespace {
+	height:35px;
+}
+.name-bg{
+	background: #8dc63f;
+	height: 65px;
+}
+.head{	margin-top: 25px; }
+.head span{ display: block;}
+.head .name{
+	font-size: 36px;
+	font-weight: bolder;
+	color: #8dc63f;
+}
+.head .email{
+	color: #000;
+	font-weight: normal;
+	padding-left: 10px;
+}
+.margin-left20{
+	/*margin-left: 40px;*/
+}
+ .ltmdiv{
+ 	width: 500px;
+ }
+ .fright {
+ 	/*float: right;*/
+ }
+.title,.title p{
+	color: #8dc63f;
+	font-weight: bold;
+	float: right;
+	margin-right: 25px;
+	text-align: right;
+}
+.content{
+	border-left: 1px dashed #f00;
+	padding: 0px 5px 20px 25px;
+	line-height: 25px;
+}
+.education-list li span{
+	line-height: 25px;
+	display: block;
+}
+.highlight{
+	color: #8dc63f;
+}
+
+ul{
+	list-style: none;
+margin-left: 0px;
+}
