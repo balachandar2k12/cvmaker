@@ -19,7 +19,7 @@ body{
 }
 
 .tagline{
-	font-size: 18px;
+	font-size: 18px;  
 	font-family: 'Merriweather Sans';
 color: #888888;
 margin-top: -10px;
@@ -43,9 +43,6 @@ background-size: 100%;
 }
 .category_field{
 	background: #EEE;
-	page-break-before: always;
-	page-break-after: always;
-
 }
 .category_heading{
 	background: #333333;
@@ -114,8 +111,6 @@ background-size: 34px;
 @media print{
 	.category_field{
 	background: #EEE;
-	page-break-before: always;
-	page-break-after: always;
-
 }
+
 }

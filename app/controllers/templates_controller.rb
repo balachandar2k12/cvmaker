@@ -39,13 +39,13 @@ class TemplatesController < ApplicationController
       template = Template.find(params[:template_id])
       if params[:id]
         cv = Cv.find(params[:id])
+        cv.update_attributes(params[:cv].permit(:content,:canvas_data))
       else
-        cv = Cv.new()
+        cv = Cv.create(params[:cv].permit(:content,:canvas_data))
         cv.template=template
         cv.student = student
+        cv.save
       end
-      cv.content = params[:content]
-      cv.save
     end
     render :json => cv.id
   end

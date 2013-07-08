@@ -70,6 +70,7 @@ gem "pdfcrowd"
 gem "rvm"
 gem "capistrano"
 gem "rvm-capistrano"
+gem "fabric-rails"
 # Use unicorn as the app server
 # gem 'unicorn'
 

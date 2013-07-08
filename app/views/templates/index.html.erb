@@ -1,0 +1,239 @@
+	<script type="text/javascript">
+	WebFontConfig = {
+		google: { families: [ 'Nova+Round::latin', 'Michroma::latin', 'Oxygen+Mono::latin', 'PT+Serif+Caption::latin', 'Wire+One::latin', 'Anton::latin', 'Merriweather+Sans::latin', 'Fjalla+One::latin' ] }
+	};
+	(function() {
+		var wf = document.createElement('script');
+		wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+		'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+		wf.type = 'text/javascript';
+		wf.async = 'true';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(wf, s);
+	})(); 
+	$(document).ready( function() {
+		$(".ui-progressbar-value").remove();
+    $(".progressBar").each(function(){
+    	var pres_val = ($(this).attr("aria-valuenow"))? parseInt($(this).attr("aria-valuenow")):60;
+    	console.log(pres_val);
+  		$(this).progressbar({"value": pres_val});
+    });
+	  $(document).on("click",".progressBar",function(e){
+        var maxWidth = $(this).css("width").slice(0, -2); //remove the 'px' from the css-value
+        var clickPos = e.pageX - this.offsetLeft; //where have you clicked in the progressbar?
+        var percentage = Math.round(clickPos / maxWidth * 100); //convert it to a percentage
+       $(this).find(".ui-progressbar-value").animate(
+					{
+					  width: "'"+ percentage+"%'"
+					}, 5000);
+        $(this).progressbar({"value": percentage});
+    });
+	});
+	</script>
+	<script src="/templates/template1/js/all.min.js"></script>
+	<script type="text/javascript">
+	window.onload = function(){		
+		window.canvas = new fabric.Canvas('my-canvas', {
+			  	backgroundColor: '#eee',
+				});
+
+		var canvas_data = null;
+		<%= raw "canvas_data= #{@cv.canvas_data};" if @cv && @cv.canvas_data %>
+		if(canvas_data==null)
+		{
+			
+				var text= new fabric.Text('Sample Text', {
+					fontSize: 20,
+					 left: 0,
+					top: 0
+				});
+				var circle = new fabric.Circle({
+				  radius: 50,
+				  fill: '#FF0000',
+				  opacity:0.5
+				});
+				var group = new fabric.Group([ circle.clone(), text.clone() ], {
+				  left: 75,
+				  top: 75,
+				});
+					var group1 = new fabric.Group([ circle.clone(), text.clone() ], {
+				  left: 200,
+				  top: 75,
+				});
+		
+							var group2 = new fabric.Group([ circle.clone(), text.clone() ], {
+				  left: 200,
+				  top: 200,
+				});
+				var group3 = new fabric.Group([ circle.clone(), text.clone() ], {
+				  left: 75,
+				  top: 200,
+				});
+				var group4 = new fabric.Group([ circle.clone(), text.clone() ], {
+				  left: 140,
+				  top: 140,
+				});
+				group.item(0).setFill('red');
+				group1.item(0).setFill('green');
+				group2.item(0).setFill('blue');
+				group3.item(0).setFill('cyan');
+				group4.item(0).setFill('magenta');
+				canvas.add(group);
+				canvas.add(group1);
+				canvas.add(group2);
+				canvas.add(group3);
+				canvas.add(group4);
+				
+
+
+			}
+			else{
+					canvas.loadFromJSON(JSON.parse(window.localStorage.getItem("canvas_data")));
+			}
+		canvas.on('object:selected', function(e) {
+			window.localStorage.setItem("canvas_data",JSON.stringify(canvas));
+  		var activeObject = e.target._objects[1];
+			document.onkeydown = function(ev) {
+				if (ev.target.tagName =="BODY"){
+							    ev = ev || window.event;
+						     	add_text(ev,activeObject);
+						     	canvas.renderAll();
+						     	ev.stopPropagation();}
+
+			};
+
+		});
+		console.log(window.canvas);
+	function add_text(ev,activeObject)
+{
+			chr = ev.keyCode;
+			var text="sample text";
+			var character =  (ev.shiftKey==true)? String.fromCharCode(chr) :String.fromCharCode(chr+32);
+      if (activeObject && activeObject.type === 'text') {
+			switch(chr)
+			{
+				case 8:
+				case 46:
+					text  = activeObject.text.slice(0, -1);
+					break;
+				default:
+				 	if((chr >48 && chr < 91 ) || (chr > 95 && chr <106 ) || chr ==16 )
+				 		text = activeObject.text + character;
+			}
+		  activeObject.setText(text);
+		  var circle_width = 50;
+		  circle_width = ( activeObject.width >100)? (activeObject.width/2)+20 : 50;
+		  activeObject.group._objects[0].setRadius(circle_width);
+   }
+    	
+	
+}
+	
+	};
+	</script>
+	<link rel="stylesheet" href="/templates/template1/style.css" media="all">
+	<div id="template_content"><% if @cv %>
+		<%=raw URI.unescape(@cv.content)%>
+	<% else %>
+		<div id="header" >
+			<div class="container" >
+				<h3 class="heading" data-mercury="full" id="heading_name">Enter Your Name here</h3>
+				<div class="tagline" id="tag_line" data-mercury="full">Tag line</div>
+			</div>
+		</div>
+		<div id="main">
+			<div class="container">
+				<div class="row">
+					<div class="span2 profile_image">
+						<img src="/templates/template1/img/profile.png" data-mercury="image">
+						<p class="photo_fade"></p>
+					</div>
+					<div class="span10">
+						<p data-mercury="full" id="career_objective">Career objective</p>
+						<p data-mercury="full">An MBA Graduate with 4 years of experience into teaching and campus placements is looking for an opportunity.</p>
+						<div class="contact_info" data-mercury="full">
+						<ul>
+							<li>user@user.com</li>
+							<li>+918756492311</li>
+							<li>www.google.com</li>
+						</ul></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span8">
+						<div class="category_field">
+							<div class="category_heading">
+								<h3  data-mercury="full">Experience</h3>
+								<div class="blue_bar"></div>
+							</div>
+							<div data-mercury="full" class="category_content">
+								<ul>
+									<li>Working as an Assistant Placement Officer @ VIT UNIVERSITY since 1st June 2011 to till now ( 24 Months)</li>
+								</ul>
+							</div>
+						</div>
+						<div class="category_shadow"></div>
+						</div>
+						<div class="span4">
+							<div class="category_field">
+							<div class="category_heading">
+								<h3 id="skills" data-mercury="full">SKILLS</h3>
+								<div class="blue_bar"></div>
+							</div>
+							<div class="category_content">
+								<div class="skill_set">
+									<p  data-mercury="full">Training</p>
+									<p class="progressBar"></p>
+								</div>
+								<div class="skill_set">
+									<p data-mercury="full">Management</p>
+									<p class="progressBar"></p>
+								</div>
+								<div class="skill_set">
+									<p data-mercury="full">Consulting</p>
+									<p class="progressBar"></p>
+								</div>
+								<div class="skill_set">
+									<p data-mercury="full">Social Skills</p>
+									<p class="progressBar"></p>
+								</div>
+								<div class="skill_set">
+									<p data-mercury="full">Communication</p>
+									<p class="progressBar"></p>
+								</div>
+							</div>
+							 </div>
+							<div class="category_shadow"></div>
+						</div>
+				</div>
+				<div class="row">
+					<div class="span8">
+						<div class="category_field">
+							<div class="category_heading">
+								<h3 data-mercury="full">Education</h3>
+								<div class="blue_bar"></div>
+							</div>
+							<div class="category_content" data-mercury="full">
+								<ul>
+									<li>Working as an Assistant Placement Officer @ VIT UNIVERSITY since 1st June 2011 to till now ( 24 Months)</li>
+								</ul>
+							</div>
+						</div>
+						<div class="category_shadow"></div>
+					</div>
+					<div class="span4">
+						<div class="category_field">
+							<div class="category_heading">
+								<h3 data-mercury="full">INTERESTS</h3>
+								<div class="blue_bar"></div>
+							</div>
+							<div class="category_content canvas">
+								<canvas id="my-canvas" width="280" height="300"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>

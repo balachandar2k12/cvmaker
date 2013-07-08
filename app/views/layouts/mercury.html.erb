@@ -21,18 +21,26 @@
       Mercury.PageEditor.prototype.save = function() {
       var url =saveUrl ? saveUrl : this.iframeSrc();
       var data_to_be_sent = {};
-      data_to_be_sent.content = escape($("iframe").contents().find("#template_content").html().replace(/contenteditable="true"/g,""));
+      data_to_be_sent.cv = {};
+      data_to_be_sent.cv.content = $("iframe").contents().find("#template_content").html().replace(/contenteditable="true"/g,"");
       if(window.cv_id!=null)
-      data_to_be_sent.id = window.cv_id;
+        data_to_be_sent.id = window.cv_id;
+      if($("iframe").contents().find("#my-canvas").length >0)
+      {
+        data_to_be_sent.cv.canvas_data = JSON.stringify(window.frames[0].window.canvas);
+        var canvas_html = $("iframe").contents().find(".canvas").html();
+        data_to_be_sent.cv.content = data_to_be_sent.cv.content.replace(canvas_html,"<canvas id='my-canvas' width='280' height='300'></canvas>");
+      }
       var method = (this.options.saveMethod == 'PUT') ? 'PUT' : 'POST';
-      console.log(data_to_be_sent);
+       console.log(data_to_be_sent);
+      data_to_be_sent.cv.content=escape(data_to_be_sent.cv.content);
+
       jQuery.ajax(url, {
       type: method,
       dataType: this.options.saveDataType || 'json',
       data: data_to_be_sent,
       success: function(data) {
       Mercury.changes = false;
-      Mercury.trigger('saved');
       window.cv_id = data.id;
       },
       error: function() {

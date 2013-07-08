@@ -11,6 +11,7 @@ class Student < ActiveRecord::Base
 
   #validates_attachment :file, :content_type => {:content_type => ['text/csv','text/comma-separated-values','text/csv','application/csv','application/excel','application/vnd.ms-excel','application/vnd.msexcel']}
   #validates_attachment :file, content_type: "application/pdf"
+  attr_accessor :unenc_password
   def self.authenticate(registerno, password)
     student  =  Student.where(register_no: registerno).take
     return student if student && student.authenticated?(password)
@@ -28,7 +29,7 @@ class Student < ActiveRecord::Base
    Rails.logger.info "plain row: #{row}"
     row = row.to_hash
     
-    row["password"] = current_college.college_setting.default_password
+    row["unenc_password"] = current_college.college_setting.default_password
     row["college_id"] = current_college.id
     
      Rails.logger.warn "added row: #{row}"
@@ -49,8 +50,8 @@ class Student < ActiveRecord::Base
   end
   protected
   def encrypt_new_password
-    return if password.blank?
-      self.password = encrypt(password)
+    return if unenc_password.blank?
+    self.password = encrypt(unenc_password)
   end
  
   def encrypt(string)

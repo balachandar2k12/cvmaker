@@ -22,15 +22,15 @@ after 'deploy:update_code' do
   # run "unlink #{release_path}/public/blog"
 
   run "ln -s #{shared_path}/system/ #{release_path}/public/" 
-  run "ln -s '/var/www/blog' #{release_path}/public/" 
-  run "ln -s '/var/www/db_admin' #{release_path}/public/"
+  #run "ln -s '/var/www/blog' #{release_path}/public/" 
+ # run "ln -s '/var/www/db_admin' #{release_path}/public/"
 
-  run "cd #{release_path} && bundle --deployment"
+  #run "cd #{release_path} && bundle --deployment"
   #run "cd #{release_path} && rake db:create"
   #run "cd #{release_path} && rake db:migrate"
   # run "cd #{release_path} && RAILS_ENV=production rake assets:precompile"
    run "chown -R www-data:www-data #{release_path}/*"
-   run "chmod -R 777 #{release_path}/log"
+   #run "chmod -R 777 #{release_path}/log"
 end
 
 namespace :deploy do

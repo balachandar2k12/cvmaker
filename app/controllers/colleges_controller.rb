@@ -30,7 +30,7 @@ class CollegesController < ApplicationController
   def create_student
     if current_college.college_setting.present?
       if(current_college.college_setting.default_password.present?)
-      params[:student][:password] = current_college.college_setting.default_password
+      params[:student][:unenc_password] = current_college.college_setting.default_password
       end
     end
      @student = current_college.students.create(student_params)
@@ -45,7 +45,6 @@ class CollegesController < ApplicationController
   
   def new_default_password
     @default_password = CollegeSetting.new
-    
   end
   
   def create_default_password
@@ -94,7 +93,7 @@ class CollegesController < ApplicationController
   
   private
    def student_params
-      params.require(:student).permit(:name, :email, :register_no, :password)
+      params.require(:student).permit(:name, :email, :register_no, :unenc_password)
     end
 
 end

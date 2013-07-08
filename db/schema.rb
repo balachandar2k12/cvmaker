@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130705070357) do
+ActiveRecord::Schema.define(version: 20130708063615) do
 
   create_table "college_settings", force: true do |t|
     t.string   "college_id"
@@ -51,6 +51,9 @@ ActiveRecord::Schema.define(version: 20130705070357) do
     t.datetime "photo_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "canvas_data"
+    t.text     "chart_data"
+    t.text     "extra_data"
   end
 
   create_table "mercury_images", force: true do |t|
