@@ -5,7 +5,7 @@ CvBuilder::Application.routes.draw do
   mount Mercury::Engine => '/'
   root to: 'home#index'
   devise_for :colleges
-  get "/get_pdf" , :to =>"templates#pdf_crowd"
+  get "/get_pdf/:template_id/:cv_id" , :to =>"templates#pdf_crowd"
   post "/save_template/:template_id", :to => "templates#save"
   get "/colleges/add_student", :to => "colleges#add_student", :as => 'add_student'
   post "/colleges/add_student", :to => "colleges#create_student", :as => 'create_student'

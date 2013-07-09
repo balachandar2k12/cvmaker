@@ -11,28 +11,44 @@ class TemplatesController < ApplicationController
 
   def index
     @cv = Cv.find(params[:id]) if params[:id]
-    render :index, :layout=>layout_with_mercury
+    @template = Template.find(params[:template_id])
+
+    render "#{Rails.root.join("public","templates",@template.title.to_s,@template.title.to_s)}", :layout=>layout_with_mercury
   end
   def show
     @cv = Cv.find(params[:id]) if params[:id]
-    render :index
+    @template = Template.find(params[:template_id])
+    render "#{Rails.root.join("public","templates",@template.title.to_s,@template.title.to_s)}"
   end
   def pdf_crowd
-    require 'pdfcrowd'
-      begin
-          # create an API client instance
-          client = Pdfcrowd::Client.new("thamizh", "7e2fe513e6b24ec3f00e32d1965ddd17")
-          # convert a web page and store the generated PDF into a pdf variable
-          pdf = client.convertURI("#{request.host}/show/1/15")
-          send_data(pdf, 
-              :filename => "resume.pdf",
-              :type => "application/pdf",
-              :disposition => "attachment")
-          # convert an HTML string and save the result to a file
-      rescue Pdfcrowd::Error => why
-          print 'FAILED: ', why
+    if current_student
+      cv = Cv.find(params[:cv_id])
+      if cv.student = current_student
+          require 'pdfcrowd'
+          begin
+              # create an API client instance
+              client = Pdfcrowd::Client.new("thamizh", "7e2fe513e6b24ec3f00e32d1965ddd17")
+
+              # convert a web page and store the generated PDF into a pdf variable
+              client.usePrintMedia(true)
+              port = request.host.to_s =="localhost" ? ":#{request.port.to_s}" : ""
+              resume_url= "http://#{request.host}#{port}/show/#{params[:template_id]}/#{params[:cv_id]}"
+              puts resume_url
+              pdf = client.convertURI(resume_url)
+              send_data(pdf, 
+                  :filename => "resume.pdf",
+                  :type => "application/pdf",
+                  :disposition => "attachment")
+              # convert an HTML string and save the result to a file
+          rescue Pdfcrowd::Error => why
+              print 'FAILED: ', why
+          end
+      else
+        render :text=> "You Dont have access to download this resume"
       end
+    end
   end
+
   def save
     student=current_student
     if student
