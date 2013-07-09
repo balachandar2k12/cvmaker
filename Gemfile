@@ -10,7 +10,10 @@ gem 'devise', '3.0.0.rc'
 gem 'wicked_pdf'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
-gem 'rails_admin', :git => "https://github.com/sferik/rails_admin.git", :branch=>"master"
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+
+gem 'protected_attributes'
+gem 'rails_admin', :git => "https://github.com/sferik/rails_admin.git", :branch=>"rails-4"
 
 group :development do
   gem "better_errors"
@@ -24,7 +27,6 @@ group :test do
   
 end
 
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 gem 'bootstrap-sass'
 # Use SCSS for stylesheets

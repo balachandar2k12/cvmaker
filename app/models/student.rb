@@ -7,7 +7,7 @@ class Student < ActiveRecord::Base
   validates :password, :presence => { :message => "is empty . Opps You Did'nt Added Default Password For Students" }
   before_save :encrypt_new_password
   has_and_belongs_to_many :templates
-  has_many :cv, :through=> :templates
+  has_many :cv
 
   #validates_attachment :file, :content_type => {:content_type => ['text/csv','text/comma-separated-values','text/csv','application/csv','application/excel','application/vnd.ms-excel','application/vnd.msexcel']}
   #validates_attachment :file, content_type: "application/pdf"

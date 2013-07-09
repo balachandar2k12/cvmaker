@@ -26,4 +26,6 @@ CvBuilder::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  
+  config.gem "paperclip", :version => "~> 3.4.2"
 end
