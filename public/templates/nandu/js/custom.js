@@ -1,37 +1,6 @@
 $(document).ready(function(){
 
 var i=0;
-// $(".main").sortable({items:".records"});
-/*
-$('.down-objective').click(function() {
-	var current =$(this).closest(".records");
-	if(!current.hasClass("last"))
-	{
-	 	$after = current.next();
-		current.insertAfter($after);
-		if(current.hasClass("first"))
-		{
-			$after.addClass("first");
-	 		current.removeClass("first");
-		}
-		
-    }
-});
-$('.up-objective').click(function() {
-	var current =$(this).closest(".records");
-	if(!current.hasClass("first"))
-	{
-	 	$before = current.prev();
-    	current.insertBefore($before);
-    	if(current.hasClass("last"))
-			{
-				$before.addClass("last");
-		 		current.removeClass("last");
-			}
-		
-    }
-});
-*/
 
 	$(document).on("mouseout",".records",function(){
 		$(".records .this_record").hide();
@@ -41,6 +10,7 @@ $('.up-objective').click(function() {
 	});
 	$(document).on("click",".this_record",function(){
 		$(this).parent().remove();
+		changeFirstLast();
 	});
 
 //Add Row with Type
@@ -203,7 +173,6 @@ $('.up-objective').click(function() {
 			}
 			i++;
 			 Mercury.trigger('reinitialize');
-			// console.log('initialize');
 			generate_script(Type,class_name);
 			 $('body,html').animate({ scrollTop: $('body').height() }, 800);
 			 setTimeout(function() { $(".blink").removeClass("blink");}, 2000);
@@ -277,7 +246,6 @@ function generate_script (type, class_name) {
 						break;
 	}
 	$(".title,.title p,.highlight").css("color",current_color);
-	Updown(class_name);
 }
 
 // Add Remove Up Down
@@ -295,7 +263,6 @@ function generate_script (type, class_name) {
 		 	else
 		 		$(".objective .row:last").remove();
 		});
-		Updown("objective");
 
 	// Add and Remove Education
 		$(document).on("click",".add-education",function(){
@@ -311,7 +278,6 @@ function generate_script (type, class_name) {
 		 	else
 		 		$(".education li:last").remove();
 		});
-		Updown("education");
 
 	// Add and Remove Project
 		$(document).on("click",".add-project",function(){
@@ -327,7 +293,6 @@ function generate_script (type, class_name) {
 		 	else
 		 		$(".project .row:last").remove();
 		});
-		Updown("project");
 
 	// Add and Remove InternShip
 		$(document).on("click",".add-internship",function(){
@@ -343,7 +308,6 @@ function generate_script (type, class_name) {
 		 	else
 		 		$(".internship .row:last").remove();
 		});
-		Updown("internship");
 
 	// Add and Remove activities
 		$(document).on("click",".add-activities",function(){
@@ -359,7 +323,6 @@ function generate_script (type, class_name) {
 		 	else
 		 		$(".activities li:last").remove();
 		});
-		Updown("activities");
 
 	// Add and Remove Skills
 		$(document).on("click",".add-skills",function(){
@@ -375,7 +338,6 @@ function generate_script (type, class_name) {
 		 	else
 		 		$(".skills li:last").remove();
 		});
-		Updown("skills");
 
 	// Add and Remove Hobbies
 		$(document).on("click",".add-hobbies",function(){
@@ -391,7 +353,6 @@ function generate_script (type, class_name) {
 		 	else
 		 		$(".hobbies li:last").remove();
 		});
-		Updown("hobbies");
 
 	// Add and Remove Personal
 		$(document).on("click",".add-personal",function(){
@@ -407,42 +368,26 @@ function generate_script (type, class_name) {
 		 	else
 		 		$(".personal .row:last").remove();
 		});
-		Updown("personal");
 
-	// Up Down
-	function Updown (class_name) {
-
-		$('.down-'+class_name).click(function() {
-			var current =$(this).closest(".records");
-			if(!current.hasClass("last"))
-			{
-			 	$after = current.next();
-				current.insertAfter($after);
-				changeFirstLast();
-				// if(current.hasClass("first"))
-				// {
-				// 	$after.addClass("first");
-			 // 		current.removeClass("first");
-				// }
-				
-		    }
-		});
-		$('.up-'+class_name).click(function() {
-			var current =$(this).closest(".records");
-			if(!current.hasClass("first"))
-			{
-			 	$before = current.prev();
-		    	current.insertBefore($before);
-		    	changeFirstLast();
-		   //  	if(current.hasClass("last"))
-					// {
-					// 	$before.addClass("last");
-				 // 		current.removeClass("last");
-					// }
-				
-		    }
-		});
-	}
+// Up Down
+	$('.down-records').click(function() {
+		var current =$(this).closest(".records");
+		if(!current.hasClass("last"))
+		{
+		 	$after = current.next();
+			current.insertAfter($after);
+			changeFirstLast();
+	    }
+	});
+	$('.up-records').click(function() {
+		var current =$(this).closest(".records");
+		if(!current.hasClass("first"))
+		{
+		 	$before = current.prev();
+	    	current.insertBefore($before);
+	    	changeFirstLast();
+	    }
+	});
 
 	function changeFirstLast() {
 		$(".records").removeClass("first");
@@ -450,4 +395,5 @@ function generate_script (type, class_name) {
 		$(".records:first").addClass("first");
 		$(".records:last").addClass("last");
 	}
+    
 });
