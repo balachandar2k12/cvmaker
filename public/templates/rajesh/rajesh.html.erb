@@ -132,15 +132,21 @@
           }
         }
       }
-
+      document.getElementByClass('.')
     };
+
   </script>
   <script src="/templates/rajesh/js/custom.js"></script>
   <script src="/templates/rajesh/js/colorpicker-app.js"></script>
 
 
-  <label id="themeSettings" class="btn btn-danger" >Theme Settings</label>
-  <label id="getPdf" class="btn btn-success" >Get PDF</label>
+ <!--  <label id="themeSettings" class="btn btn-danger" >Theme Settings</label>
+  <label id="getPdf" class="btn btn-success" >Get PDF</label> -->
+  <div class="btn-group" id="settings-container">
+    <button id="themeSettings" class="btn btn-warning">Theme Settings</button>
+    <button id="getPdf" class="btn btn-primary">Get PDF</button>
+  </div>
+
   <div class="hide selectionPlace">
     <select class="addType">
       <option value=""> -- Select Style -- </option>
@@ -398,3 +404,9 @@
     </div>
   <% end %>
   </div>
+
+  <script type="text/javascript">
+      $(document).ready(function(){
+        $(".mercury-statusbar").hide();
+      });
+  </script>

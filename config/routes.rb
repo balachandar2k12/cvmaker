@@ -22,6 +22,7 @@ CvBuilder::Application.routes.draw do
   get "/colleges/import", to: "colleges#new_import", :as => 'new_import'
   post "/colleges/import", to: "colleges#create_import", :as => 'create_import'
   get "/colleges/subscription", to: "colleges#new_subscription", :as => 'new_subscription'
+   get "/colleges/admin", to: "colleges#admin_dashboard", :as => 'college_admin'
   post "/colleges/subscription", to: "colleges#create_subscription", :as => 'create_subscription'
   get  "/students/pdf", to: "students#create_pdf", :as => 'create_pdf'
 

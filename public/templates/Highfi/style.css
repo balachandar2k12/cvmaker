@@ -17,6 +17,11 @@ body{
 	color: #CCC;
 
 }
+#get-pdf{
+	top: 0;
+	right:0;
+	position:fixed;
+}
 
 .tagline{
 	font-size: 18px;  

@@ -5,6 +5,10 @@ class CollegesController < ApplicationController
     
     
   end
+
+  def admin_dashboard
+    
+  end
   
   def new_subscription
     @subscription = current_college.subscription.new

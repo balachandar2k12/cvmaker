@@ -7,11 +7,16 @@ body{
 	background-image: url("../img/glyphicons-halflings.png");
 	cursor: pointer;
 }
-#themeSettings{
+#settings-container{
 	top: 0px;
 	right: 0;
 	position: fixed;
 }
+#themeSettings{
+	
+}
+.hidden { visibility: hidden; display: none;}
+
 .mercury-primary-toolbar .mercury-save-button em, .mercury-expander-button[data-button=save] em{
 	background-image: url("../img/email.png") !important;
 }

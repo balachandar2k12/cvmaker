@@ -17,6 +17,12 @@ body{
 	background: #33cc00;
 	height: 65px;
 }
+#get-pdf{
+	
+    top: 0;
+    right:0;
+    position: fixed;
+}
 .header{	margin-bottom: 30px; }
 .head span{ display: block;}
 .head .name{

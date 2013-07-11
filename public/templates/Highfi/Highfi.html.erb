@@ -126,6 +126,7 @@ if (activeObject && activeObject.type === 'text') {
 };
 </script>
 <link rel="stylesheet" href="/templates/Highfi/style.css" media="all">
+<button class="btn btn-primary" id="get-pdf">Get PDF</button>
 <div id="template_content"><% if @cv %>
 	<%=raw URI.unescape(@cv.content)%>
 	<% else %>
