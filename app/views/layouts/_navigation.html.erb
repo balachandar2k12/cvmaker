@@ -1,21 +1,35 @@
-<ul class="nav">
-  <% if college_signed_in? %>
-    <li>
-    <%= link_to 'Logout', destroy_college_session_path, :method=>'delete' %>
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'College Login', new_college_session_path %> or
-    <%= link_to 'Sign up', new_college_registration_path %>
-    </li>
-  <% end %>
-  <% if student_logged_in? %>
-    <li>
-    <%= link_to 'Logout', student_logout_path, :method=>'delete' %>
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'Student Login', student_new_login_path %>
-    </li>
-  <% end %>
-</ul>
+
+<div class="navbar fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">Create Resume</a>
+       <ul class="nav ">
+      <% if college_signed_in? %>
+        <li>
+        <%= link_to 'Logout', destroy_college_session_path, :method=>'delete' %>
+        </li>
+      <% else %>
+        <li>
+        <%= link_to 'College Login', new_college_session_path %></li> 
+        <li><%= link_to 'or Sign up', new_college_registration_path %></li>
+        
+      <% end %>
+      <% if student_logged_in? %>
+        <li>
+        <%= link_to 'Logout', student_logout_path, :method=>'delete' %>
+        </li>
+      <% else %>
+        <li>
+        <%= link_to 'Student Login', student_new_login_path %>
+        </li>
+      <% end %>
+    </ul>
+    
+ 
+    </div>
+  </div>
+</div>
+
+
+
+

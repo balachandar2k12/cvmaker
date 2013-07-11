@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>CvBuilder</title>
-  <%= stylesheet_link_tag    "students/application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "students/application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= yield :extra_js %>
@@ -16,8 +16,7 @@
       <div id="main" role="main">
         <%= yield %>
       </div>
-      <footer>
-      </footer>
+    
     </div> <!--! end of #container -->
 </body>
 </html>
