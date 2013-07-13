@@ -1,4 +1,5 @@
 CvBuilder::Application.routes.draw do
+<<<<<<< HEAD
     namespace :mercury do
       resources :images
     end
@@ -28,6 +29,9 @@ CvBuilder::Application.routes.draw do
 
 
   get "/*" , to: "home#index", :as =>"universal"
+=======
+ 
+>>>>>>> de8f82f853613cdadf01dcbd4a26ec938692050f
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
