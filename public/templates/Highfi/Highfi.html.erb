@@ -1,133 +1,107 @@
+<link rel="stylesheet" href="/templates/css/bootstrap-colorpicker.css" type="text/css">
+<script src="/templates/js/bootstrap-colorpicker.js"></script>
+<script src="/templates/js/all.min.js"></script>
+<script src="/templates/Highfi/js/custom.js"></script>
 <script type="text/javascript">
-	WebFontConfig = {
-		google: { families: [ 'Nova+Round::latin', 'Michroma::latin', 'Oxygen+Mono::latin', 'PT+Serif+Caption::latin', 'Wire+One::latin', 'Anton::latin', 'Merriweather+Sans::latin', 'Fjalla+One::latin' ] }
-	};
-	(function() {
-		var wf = document.createElement('script');
-		wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-		'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-		wf.type = 'text/javascript';
-		wf.async = 'true';
-		var s = document.getElementsByTagName('script')[0];
-		s.parentNode.insertBefore(wf, s);
-	})();
-	$(document).ready( function() {
-		$(".ui-progressbar-value").remove();
-$(".progressBar").each(function(){
-	var pres_val = ($(this).attr("aria-valuenow"))? parseInt($(this).attr("aria-valuenow")):60;
-	console.log(pres_val);
-		$(this).progressbar({"value": pres_val});
-});
-	$(document).on("click",".progressBar",function(e){
-var maxWidth = $(this).css("width").slice(0, -2); //remove the 'px' from the css-value
-var clickPos = e.pageX - this.offsetLeft; //where have you clicked in the progressbar?
-var percentage = Math.round(clickPos / maxWidth * 100); //convert it to a percentage
-$(this).find(".ui-progressbar-value").animate(
-					{
-					width: "'"+ percentage+"%'"
-					}, 5000);
-$(this).progressbar({"value": percentage});
-});
-	});
-</script>
-<script src="/templates/Highfi/js/all.min.js"></script>
-<script type="text/javascript">
-		window.onload = function(){
+window.onload = function(){
 	window.canvas = new fabric.Canvas('my-canvas', {
-			backgroundColor: '#eee',
-			});
+		backgroundColor: '#eee',
+	});
 	var canvas_data = null;
 	<%= raw "canvas_data= #{@cv.canvas_data};" if @cv && @cv.canvas_data %>
 	if(canvas_data==null)
 	{
 		
-			var text= new fabric.Text('Sample Text', {
-				fontSize: 20,
-				left: 0,
-				top: 0
-			});
-			var circle = new fabric.Circle({
+		var text= new fabric.Text('Sample Text', {
+			fontSize: 20,
+			left: 0,
+			top: 0
+		});
+		var circle = new fabric.Circle({
 			radius: 50,
 			fill: '#FF0000',
 			opacity:0.5
-			});
-			var group = new fabric.Group([ circle.clone(), text.clone() ], {
+		});
+		var group = new fabric.Group([ circle.clone(), text.clone() ], {
 			left: 75,
 			top: 75,
-			});
-				var group1 = new fabric.Group([ circle.clone(), text.clone() ], {
+		});
+		var group1 = new fabric.Group([ circle.clone(), text.clone() ], {
 			left: 200,
 			top: 75,
-			});
-	
-						var group2 = new fabric.Group([ circle.clone(), text.clone() ], {
+		});
+
+		var group2 = new fabric.Group([ circle.clone(), text.clone() ], {
 			left: 200,
 			top: 200,
-			});
-			var group3 = new fabric.Group([ circle.clone(), text.clone() ], {
+		});
+		var group3 = new fabric.Group([ circle.clone(), text.clone() ], {
 			left: 75,
 			top: 200,
-			});
-			var group4 = new fabric.Group([ circle.clone(), text.clone() ], {
+		});
+		var group4 = new fabric.Group([ circle.clone(), text.clone() ], {
 			left: 140,
 			top: 140,
-			});
-			group.item(0).setFill('red');
-			group1.item(0).setFill('green');
-			group2.item(0).setFill('blue');
-			group3.item(0).setFill('cyan');
-			group4.item(0).setFill('magenta');
-			canvas.add(group);
-			canvas.add(group1);
-			canvas.add(group2);
-			canvas.add(group3);
-			canvas.add(group4);
-			
-		}
-		else{
-				canvas.loadFromJSON(JSON.parse(window.localStorage.getItem("canvas_data")));
-		}
+		});
+		group.item(0).setFill('red');
+		group1.item(0).setFill('green');
+		group2.item(0).setFill('blue');
+		group3.item(0).setFill('cyan');
+		group4.item(0).setFill('magenta');
+		canvas.add(group);
+		canvas.add(group1);
+		canvas.add(group2);
+		canvas.add(group3);
+		canvas.add(group4);
+
+	}
+	else{
+		canvas.loadFromJSON(JSON.parse(canvas_data));
+	}
 	canvas.on('object:selected', function(e) {
 		window.localStorage.setItem("canvas_data",JSON.stringify(canvas));
-	var activeObject = e.target._objects[1];
+		var activeObject = e.target._objects[1];
 		document.onkeydown = function(ev) {
 			if (ev.target.tagName =="BODY"){
-						ev = ev || window.event;
-						add_text(ev,activeObject);
-						canvas.renderAll();
-						ev.stopPropagation();}
-		};
-	});
+				ev = ev || window.event;
+				add_text(ev,activeObject);
+				canvas.renderAll();
+				ev.stopPropagation();}
+			};
+		});
 	console.log(window.canvas);
-function add_text(ev,activeObject)
-{
+	function add_text(ev,activeObject)
+	{
 		chr = ev.keyCode;
 		var text="sample text";
 		var character =  (ev.shiftKey==true)? String.fromCharCode(chr) :String.fromCharCode(chr+32);
-if (activeObject && activeObject.type === 'text') {
-		switch(chr)
-		{
-			case 8:
-			case 46:
+		if (activeObject && activeObject.type === 'text') {
+			switch(chr)
+			{
+				case 8:
+				case 46:
 				text  = activeObject.text.slice(0, -1);
 				break;
-			default:
+				default:
 				if((chr >48 && chr < 91 ) || (chr > 95 && chr <106 ) || chr ==16 )
 					text = activeObject.text + character;
+			}
+			activeObject.setText(text);
+			var circle_width = 50;
+			circle_width = ( activeObject.width >100)? (activeObject.width/2)+20 : 50;
+			activeObject.group._objects[0].setRadius(circle_width);
 		}
-	activeObject.setText(text);
-	var circle_width = 50;
-	circle_width = ( activeObject.width >100)? (activeObject.width/2)+20 : 50;
-	activeObject.group._objects[0].setRadius(circle_width);
-}
 
-}
+	}
 
 };
 </script>
 <link rel="stylesheet" href="/templates/Highfi/style.css" media="all">
-<button class="btn btn-primary" id="get-pdf">Get PDF</button>
-<div id="template_content"><% if @cv %>
+<div id="template_content">
+<div class="settings">
+  <a href="#" class="btn btn-default" id="cp4" data-color-format="hex" data-color="rgb(255, 255, 255)" data-colorpicker-guid="4">Change Text color</a>
+  <button id="getPdf" class="btn btn-success" >Get PDF</button>
+</div><% if @cv %>
 	<%=raw URI.unescape(@cv.content)%>
 	<% else %>
 	<div id="header" >

@@ -1,8 +1,7 @@
 CvBuilder::Application.routes.draw do
-<<<<<<< HEAD
-    namespace :mercury do
+  namespace :mercury do
       resources :images
-    end
+  end
   mount Mercury::Engine => '/'
   root to: 'home#index'
   devise_for :colleges
@@ -19,7 +18,7 @@ CvBuilder::Application.routes.draw do
   delete "/students/logout", to: "students#logout", :as => 'student_logout'
 
   get "/template/:template_id(/:id)", to: "templates#index"
-    get "/show/:template_id(/:id)", to: "templates#show"
+  get "/show/:template_id(/:id)", to: "templates#show"
   get "/colleges/import", to: "colleges#new_import", :as => 'new_import'
   post "/colleges/import", to: "colleges#create_import", :as => 'create_import'
   get "/colleges/subscription", to: "colleges#new_subscription", :as => 'new_subscription'
@@ -27,11 +26,8 @@ CvBuilder::Application.routes.draw do
   post "/colleges/subscription", to: "colleges#create_subscription", :as => 'create_subscription'
   get  "/students/pdf", to: "students#create_pdf", :as => 'create_pdf'
 
-
   get "/*" , to: "home#index", :as =>"universal"
-=======
- 
->>>>>>> de8f82f853613cdadf01dcbd4a26ec938692050f
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

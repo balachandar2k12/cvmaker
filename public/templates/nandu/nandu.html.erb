@@ -1,43 +1,47 @@
   <link rel="stylesheet" type="text/css" href="/templates/nandu/css/custom.css">
-  <link rel="stylesheet" href="/templates/nandu/css/bootstrap-colorpicker.css" type="text/css">
-  <script src="/templates/nandu/js/bootstrap-colorpicker.js"></script>
-  <script src="/templates/nandu/js/colorpicker-app.js"></script>
+  <link rel="stylesheet" href="/templates/css/bootstrap-colorpicker.css" type="text/css">
+  <script src="/templates/js/bootstrap-colorpicker.js"></script>
   <script src="/templates/nandu/js/custom.js"></script>
-    <div class="selectionPlace">
-       <button id="get-pdf" class="btn btn-primary">Get PDF</button>
-      <select class="addType">
-        <option value=""> -- Select Style -- </option>
-        <option value="Objective">Objective Style</option>
-        <option value="Education">Education Style</option>
-        <option value="Project">Project Style</option>
-        <option value="Skills">Skills Style</option>
-      </select>
-      <button class="addRow btn btn-default">Add</button>
-          <a href="#" class="btn small bscp" id="cp4" data-color-format="hex" data-color="rgb(255, 255, 255)" data-colorpicker-guid="4">Change Text color</a>
+  <div class="settings">
+    <label id="themeSettings" class="btn btn-danger" >Add New Widgets</label>
+    <label id="getPdf" class="btn btn-success" >Get PDF</label>
+    <div class="hide selectionPlace">
+      <div class="setting-arrow-up"></div>
+      <ul class="settings_styles">
+        <li><a><p><img src="/templates/nandu/img/style1x.jpg"></p><p class="setting-text">Objective</p></a></li>
+        <li><a><p><img src="/templates/nandu/img/style2x.jpg"></p><p class="setting-text">Education</p></a></li>
+        <li><a><p><img src="/templates/nandu/img/style3x.jpg"></p><p class="setting-text">Project</p></a></li>
+        <li><a><p><img src="/templates/nandu/img/style4x.jpg"></p><p class="setting-text">Skills</p></a></li>
+
+
+      </ul>
+      <a href="#" class="btn btn-default" id="cp4" data-color-format="hex" data-color="rgb(255, 255, 255)" data-colorpicker-guid="4">Change Text color</a>
     </div>
+  </div>
+
   <div id="template_content">
 
-  <% if @cv %>
+    <% if @cv %>
     <%=raw URI.unescape(@cv.content)%>
-  <% else %>
+    <% else %>
     <div class="container main">
-        <div class="row header">
-          <div class="span3 addRecord">
-            <div class="name-bg">
-            </div>
-          </div>
-          <div class="span9">
-            <div class="head">
-              <span class="name">Nandakumar K</span>
-              <span class="email">nandhakumar.kathiravan@yahoo.com</span>
-            </div>
+      <div class="row header">
+        <div class="span3 addRecord">
+          <div class="name-bg">
           </div>
         </div>
+        <div class="span9">
+          <div class="head">
+            <span class="name" data-mercury="full">Nandakumar K</span>
+            <span class="email" data-mercury="full">nandhakumar.kathiravan@yahoo.com</span>
+          </div>
+        </div>
+      </div>
 
-        <div class="row">
-          <div class="span3 add">
-            <div class="row">
-              <div class="span3"><span class="title" data-mercury="full">Objective</span></div>
+      <div class="row">
+        <div class="span3 add">
+          <div class="row">
+            <div class="span3"><span class="title" data-mercury="full">Objective</span></div>
               <!-- <div class="toShow">
                 <span class="icon-arrow-up up-records" title="Move Up"></span>
                 <span class="icon-arrow-down down-records" title="Move Down"></span>
@@ -68,52 +72,17 @@
           </div>
           <div class="span8">
             <div class="row">
-              <div class="content" data-mercury="full">
+              <div class="content" >
                 <ul class="education edu-list">
                   <li>
-                    <span class="highlight">MBA Marketing and Human Resource</span>
-                    <span>April 2011 - May 2013-Present.</span>
-                    <span>Currently pursuing my MBA in VIT University with a CGPA of 7.1.</span>
-                  </li>
-                   <li>
-                    <span class="highlight">MBA Marketing and Human Resource</span>
-                    <span>April 2011 - May 2013-Present.</span>
-                    <span>Currently pursuing my MBA in VIT University with a CGPA of 7.1.</span>
-                  </li>
-                   <li>
-                    <span class="highlight">MBA Marketing and Human Resource</span>
-                    <span>April 2011 - May 2013-Present.</span>
-                    <span>Currently pursuing my MBA in VIT University with a CGPA of 7.1.</span>
-                  </li>
-                   <li>
-                    <span class="highlight">MBA Marketing and Human Resource</span>
-                    <span>April 2011 - May 2013-Present.</span>
-                    <span>Currently pursuing my MBA in VIT University with a CGPA of 7.1.</span>
-                  </li>
-                   <li>
-                    <span class="highlight">MBA Marketing and Human Resource</span>
-                    <span>April 2011 - May 2013-Present.</span>
-                    <span>Currently pursuing my MBA in VIT University with a CGPA of 7.1.</span>
-                  </li>
-                   <li>
-                    <span class="highlight">MBA Marketing and Human Resource</span>
-                    <span>April 2011 - May 2013-Present.</span>
+                    <span data-mercury="full" class="highlight">MBA Marketing and Human Resource</span>
+                    <span data-mercury="full">April 2011 - May 2013-Present.<br>
                     <span>Currently pursuing my MBA in VIT University with a CGPA of 7.1.</span>
                   </li>
                   <li>
-                    <span class="highlight">Bachelor of Business Administration</span>
-                    <span class="when">May 2008 - May 2011.</span>
-                    <span>Completed my BBA in VIT University with a CGPA of 7.23.</span>
-                  </li>
-                  <li>
-                    <span class="highlight">Higher Secondary School Leaving Examination</span>
-                    <span class="when">July 2007 - April 2008.</span>
-                    <span>Completed my 12th standard in ACS Matriculation Higher Secondary School and secured 74.1%.</span>
-                  </li>
-                  <li>
-                    <span class="highlight">10th standard</span>
-                    <span>July 2005 - May 2006.</span>
-                    <span>Completed my 10th standard in ACS Matriculation Higher Secondary School and secured 70%.</span>
+                    <span data-mercury="full" class="highlight">MBA Marketing and Human Resource</span>
+                    <span data-mercury="full">April 2011 - May 2013-Present.<br>
+                    <span>Currently pursuing my MBA in VIT University with a CGPA of 7.1.</span>
                   </li>
                 </ul>
               </div>
@@ -134,32 +103,32 @@
               </div>
             </div>
           </div>
-          <div class="span8 border-left project" data-mercury="full">
+          <div class="span8 border-left project" >
             <div class="row">
               <div class="span3">
-                <span class="highlight">Name of the Organisation</span>
+                <span class="highlight" data-mercury="full">Name of the Organisation</span>
               </div>
-                <span class="span1"> - </span>
-              <div class="span4">
-                <span>IDBI FEDERAL LIFE INSURANCE COMPANY, CHENNAI.</span>
+              <span class="span1"> - </span>
+              <div class="span4" data-mercury="full">
+                <span data-mercury="full">IDBI FEDERAL LIFE INSURANCE COMPANY, CHENNAI.</span>
               </div>
             </div>
             <div class="row">
               <div class="span3">
-                <span class="highlight">Duration</span>
+                <span class="highlight" data-mercury="full">Duration</span>
               </div>
-                <span class="span1"> - </span>
+              <span class="span1"> - </span>
               <div class="span4">
-                <span>6 Weeks.</span>
+                <span data-mercury="full">6 Weeks.</span>
               </div>
             </div>
             <div class="row">
               <div class="span3">
-                <span class="highlight">Project Title</span>
+                <span class="highlight" data-mercury="full">Project Title</span>
               </div>
-                <span class="span1"> - </span>
+              <span class="span1"> - </span>
               <div class="span4">
-                <span>"Customer Satisfaction".</span>
+                <span data-mercury="full">"Customer Satisfaction".</span>
               </div>
             </div>
           </div>
@@ -178,23 +147,23 @@
               </div>
             </div>
           </div>
-          <div class="span8 border-left internship" data-mercury="full">
+          <div class="span8 border-left internship" >
             <div class="row">
               <div class="span3">
-                <span class="highlight">Name of the Organisation</span>
+                <span class="highlight data-mercury="full"">Name of the Organisation</span>
               </div>
-                <span class="span1"> - </span>
+              <span class="span1"> - </span>
               <div class="span4">
-                <span>TVS BRAKES INDIA LIMITED, PADI, CHENNAI.</span>
+                <span data-mercury="full">TVS BRAKES INDIA LIMITED, PADI, CHENNAI.</span>
               </div>
             </div>
             <div class="row">
               <div class="span3">
-                <span class="highlight">Duration</span>
+                <span data-mercury="full" class="highlight">Duration</span>
               </div>
-                <span class="span1"> - </span>
+              <span class="span1"> - </span>
               <div class="span4">
-                <span>1 Month.</span>
+                <span data-mercury="full">1 Month.</span>
               </div>
             </div>
           </div>
@@ -208,28 +177,16 @@
               <div class="toShow">
                 <span class="icon-arrow-up up-records" title="Move Up"></span>
                 <span class="icon-arrow-down down-records" title="Move Down"></span>
-                <span class="icon-plus-sign add-activities" title="Add New"></span>
-                <span class="icon-remove-sign remove-activities" title="Remove Last"></span>
               </div>
             </div>
           </div>
           <div class="span8">
             <div class="row" data-mercury="full">
               <div class="content">
-                <ul class="activities">
-                  <li>
-                    Won district level cricket match for the school team.
-                  </li>
-                  <li>
-                    Participated and won several Medals at the Zonal and district level.
-                  </li>
-                  <li>
-                    Worked as a committee manager for cricket 30-40 at Invictus 2012.
-                  </li>
-                  <li>
-                    Worked as a committee manager for Marketing & Publicity at Gravitas 20
-                  </li>
-                </ul>
+                <p>Won district level cricket match for the school team.</p>
+                <p>Participated and won several Medals at the Zonal and district level.</p>
+                <p>Worked as a committee manager for cricket 30-40 at Invictus 2012.</p>
+                <p>Worked as a committee manager for Marketing & Publicity at Gravitas 20</p>
               </div>
             </div>
           </div>
@@ -243,29 +200,17 @@
               <div class="toShow">
                 <span class="icon-arrow-up up-records" title="Move Up"></span>
                 <span class="icon-arrow-down down-records" title="Move Down"></span>
-                <span class="icon-plus-sign add-skills" title="Add New"></span>
-                <span class="icon-remove-sign remove-skills" title="Remove Last"></span>
               </div>
             </div>
           </div>
           <div class="span8">
             <div class="row">
               <div class="content" data-mercury="full">
-                <ul class="skills">
-                  <li>
-                    Love to work with people around.
-                  </li>
-                  <li>
-                    Listen to and respect other ideas.
-                  </li>
-                  <li>
-                    Self motivated and ability to motivate others.
-                  </li>
-                  <li>
-                    Passionate about applying my innovative ideas in my profession.
-                  </li>
-                </ul>
-              </div>
+                <p>Love to work with people around.</p>
+                <p>Listen to and respect other ideas.</p>
+                <p>Self motivated and ability to motivate others.</p>
+                <p>Passionate about applying my innovative ideas in my profession.</p>
+             </div>
             </div>
           </div>
           <div class="hide this_record">x</div>
@@ -278,22 +223,14 @@
               <div class="toShow">
                 <span class="icon-arrow-up up-records" title="Move Up"></span>
                 <span class="icon-arrow-down down-records" title="Move Down"></span>
-                <span class="icon-plus-sign add-hobbies" title="Add New"></span>
-                <span class="icon-remove-sign remove-hobbies" title="Remove Last"></span>
               </div>
             </div>
           </div>
           <div class="span8">
             <div class="row">
               <div class="content" data-mercury="full">
-                <ul class="hobbies">
-                  <li>
-                    Athletics, shuttle cork, volley ball and cricket.
-                  </li>
-                  <li>
-                    Reading books, Travelling, Surfing, Listening to music.
-                  </li>
-                </ul>
+                <p>Athletics, shuttle cork, volley ball and cricket.</p>
+                <p>Reading books, Travelling, Surfing, Listening to music.</p>
               </div>
             </div>
           </div>
@@ -312,64 +249,64 @@
               </div>
             </div>
           </div>
-          <div class="span8 border-left personal" data-mercury="full">
+          <div class="span8 border-left personal">
             <div class="row">
               <div class="span3">
-                <span class="highlight">Father's Name</span>
+                <span data-mercury="full" class="highlight">Father's Name</span>
               </div>
-                <span class="span1"> - </span>
+              <span class="span1"> - </span>
               <div class="span4">
-                <span>T. E. Kathiravan</span>
+                <span data-mercury="full">T. E. Kathiravan</span>
               </div>
             </div>
             <div class="row">
               <div class="span3">
-                <span class="highlight">Date of Birth</span>
+                <span data-mercury="full" class="highlight">Date of Birth</span>
               </div>
-                <span class="span1"> - </span>
+              <span class="span1"> - </span>
               <div class="span4">
-                <span>21/12/1990</span>
+                <span data-mercury="full">21/12/1990</span>
               </div>
             </div>
             <div class="row">
               <div class="span3">
-                <span class="highlight">Gender</span>
+                <span data-mercury="full" class="highlight">Gender</span>
               </div>
-                <span class="span1"> - </span>
+              <span class="span1"> - </span>
               <div class="span4">
-                <span>Male</span>
+                <span data-mercury="full">Male</span>
               </div>
             </div>
             <div class="row">
               <div class="span3">
-                <span class="highlight">Languages Known</span>
+                <span data-mercury="full" class="highlight">Languages Known</span>
               </div>
-                <span class="span1"> - </span>
+              <span class="span1"> - </span>
               <div class="span4">
-                <span>Tamil, English</span>
+                <span data-mercury="full">Tamil, English</span>
               </div>
             </div>
             <div class="row">
               <div class="span3">
-                <span class="highlight">Permanent Address</span>
+                <span data-mercury="full" class="highlight">Permanent Address</span>
               </div>
-                <span class="span1"> - </span>
+              <span class="span1"> - </span>
               <div class="span4">
-                <span>No 65, CPM Street, Kosapalayam, Arni, Tiruvannamalai District.</span>
+                <span data-mercury="full">No 65, CPM Street, Kosapalayam, Arni, Tiruvannamalai District.</span>
               </div>
             </div>
             <div class="row">
               <div class="span3">
-                <span class="highlight">Mobile Number</span>
+                <span data-mercury="full" class="highlight">Mobile Number</span>
               </div>
-                <span class="span1"> - </span>
+              <span class="span1"> - </span>
               <div class="span4">
-                <span>9500667737</span>
+                <span data-mercury="full">9500667737</span>
               </div>
             </div>
           </div>
           <div class="hide this_record">x</div>
         </div>
+      </div>
+      <% end %>
     </div>
-  <% end %>
-  </div>
