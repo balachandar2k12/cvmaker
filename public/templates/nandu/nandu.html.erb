@@ -3,7 +3,11 @@
   <script src="/templates/nandu/js/bootstrap-colorpicker.js"></script>
   <script src="/templates/nandu/js/colorpicker-app.js"></script>
   <script src="/templates/nandu/js/custom.js"></script>
-    <div class="selectionPlace">
+  <div class="settings">
+    <label id="themeSettings" class="btn btn-danger" >Theme Settings</label>
+    <label id="getPdf" class="btn btn-success" >Get PDF</label>
+    <div class="hide selectionPlace">
+    <div class="setting-arrow-up"></div>
       <select class="addType">
         <option value=""> -- Select Style -- </option>
         <option value="Objective">Objective Style</option>
@@ -12,8 +16,10 @@
         <option value="Skills">Skills Style</option>
       </select>
       <button class="addRow btn btn-default">Add</button>
-          <a href="#" class="btn small bscp" id="cp4" data-color-format="hex" data-color="rgb(255, 255, 255)" data-colorpicker-guid="4">Change Text color</a>
+          <a href="#" class="btn btn-default" id="cp4" data-color-format="hex" data-color="rgb(255, 255, 255)" data-colorpicker-guid="4">Change Text color</a>
     </div>
+  </div>
+
   <div id="template_content">
 
   <% if @cv %>

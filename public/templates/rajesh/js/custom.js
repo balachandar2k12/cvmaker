@@ -4,19 +4,18 @@ var i=0;
 // Theme Settings
 	$("#themeSettings").click(function () {
 		$(".selectionPlace").slideToggle( 400 , "swing" , function(){
-		// console.log("doneee");
+			if($("#themeSettings").html()=="Theme Settings")
+			{
+				$("#themeSettings").html("Close Settings");
+				$(".setting-arrow-up").animate({marginTop : "-10px"},500);
+			}
+			else
+			{
+				$("#themeSettings").html("Theme Settings");
+				$(".setting-arrow-up").animate({marginTop : "0px"},500);
+			}
 		});
-		if($("#themeSettings").html()=="Theme Settings")
-		{
-		$("#themeSettings").html("Close Settings");
-		}
-		else
-		{
-		$("#themeSettings").html("Theme Settings");
-		}
-
 	});
-
 // add interst
 	$(document).on("click",".add-interest",function(){
 		var maxLeft=650,minLeft=250;
