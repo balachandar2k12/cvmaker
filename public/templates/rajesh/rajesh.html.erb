@@ -1,190 +1,175 @@
-  <link rel="stylesheet" type="text/css" href="/templates/rajesh/css/custom.css">
-  <link rel="stylesheet" href="/templates/rajesh/css/bootstrap-colorpicker.css" type="text/css">
-  <script src="/templates/rajesh/js/bootstrap-colorpicker.js"></script>
-  <script src="/templates/Highfi/js/all.min.js"></script>
-  <script type="text/javascript">
-    window.onload = function(){
-      window.canvas = new fabric.Canvas('my-canvas', {
-          backgroundColor: '#fff',
-          });
-      var canvas_data = null;
-      <%= raw "canvas_data= #{@cv.canvas_data};" if @cv && @cv.canvas_data %>
-      if(canvas_data==null)
+<link rel="stylesheet" type="text/css" href="/templates/rajesh/css/custom.css">
+<link rel="stylesheet" href="/templates/css/bootstrap-colorpicker.css" type="text/css">
+<script src="/templates/js/bootstrap-colorpicker.js"></script>
+<script src="/templates/js/all.min.js"></script>
+<script type="text/javascript">
+window.canvas={};
+window.onload = function(){
+  window.canvas = new fabric.Canvas('my-canvas', {
+    backgroundColor: '#fff',
+  });
+  var canvas_data = null;
+  <%= raw "canvas_data= #{@cv.canvas_data};" if @cv && @cv.canvas_data %>
+  if(canvas_data==null)
+  {
+    var text= new fabric.Text('Sample Text', {
+      fontSize: 20,
+      left: 0,
+      top: 0,
+      textAlign:'center'
+    });
+    var circle = new fabric.Circle({
+      radius: 65,
+      fill: '#FF0000',
+      opacity:0.5
+    });
+    var group = new fabric.Group([ circle.clone(), text.clone() ], {
+      left: 175,
+      top: 75
+    });
+    var group1 = new fabric.Group([ circle.clone(), text.clone() ], {
+      left: 275,
+      top: 150
+    });
+    var group2 = new fabric.Group([ circle.clone(), text.clone() ], {
+      left: 400,
+      top: 150
+    });
+    var group3 = new fabric.Group([ circle.clone(), text.clone() ], {
+      left: 500,
+      top: 225
+    });
+    var group4 = new fabric.Group([ circle.clone(), text.clone() ], {
+      left: 500,
+      top: 75
+    });
+    var group5 = new fabric.Group([ circle.clone(), text.clone() ], {
+      left: 175,
+      top: 225
+    });
+    group.item(0).setFill('red');
+    group1.item(0).setFill('green');
+    group2.item(0).setFill('blue');
+    group3.item(0).setFill('cyan');
+    group4.item(0).setFill('magenta');
+    group5.item(0).setFill('yellow');
+    canvas.add(group);
+    canvas.add(group1);
+    canvas.add(group2);
+    canvas.add(group3);
+    canvas.add(group4);
+    canvas.add(group5);
+  }
+  else
+  {
+    canvas.loadFromJSON(JSON.parse(canvas_data));
+  }
+  canvas.on('object:selected', function(e) {
+    window.localStorage.setItem("canvas_data",JSON.stringify(canvas));
+    var activeObject = e.target._objects[1];
+    document.onkeydown = function(ev) {
+      if (ev.target.tagName =="BODY")
       {
-        var text= new fabric.Text('Sample Text', {
-        fontSize: 20,
-        left: 0,
-        top: 0,
-        textAlign:'center'
-        });
-        var circle = new fabric.Circle({
-        radius: 65,
-        fill: '#FF0000',
-        opacity:0.5
-        });
-        var group = new fabric.Group([ circle.clone(), text.clone() ], {
-        left: 175,
-        top: 75
-        });
-          var group1 = new fabric.Group([ circle.clone(), text.clone() ], {
-        left: 275,
-        top: 150
-        });
-
-        var group2 = new fabric.Group([ circle.clone(), text.clone() ], {
-        left: 400,
-        top: 150
-        });
-        var group3 = new fabric.Group([ circle.clone(), text.clone() ], {
-        left: 500,
-        top: 225
-        });
-        var group4 = new fabric.Group([ circle.clone(), text.clone() ], {
-        left: 500,
-        top: 75
-        });
-        var group5 = new fabric.Group([ circle.clone(), text.clone() ], {
-        left: 175,
-        top: 225
-        });
-        group.item(0).setFill('red');
-        group1.item(0).setFill('green');
-        group2.item(0).setFill('blue');
-        group3.item(0).setFill('cyan');
-        group4.item(0).setFill('magenta');
-        group5.item(0).setFill('yellow');
-        canvas.add(group);
-        canvas.add(group1);
-        canvas.add(group2);
-        canvas.add(group3);
-        canvas.add(group4);
-        canvas.add(group5);  
+        ev = ev || window.event;
+        add_text(ev,activeObject);
+        canvas.renderAll();
+        ev.stopPropagation();
       }
-      else
+    };
+  });
+  function add_text(ev,activeObject)
+  {
+    chr = ev.keyCode;
+    var text="sample text";
+    var character =  String.fromCharCode(chr);
+    var changeRadius=false;
+    if (activeObject && activeObject.type === 'text')
+    {
+      switch(chr)
       {
-        canvas.loadFromJSON(JSON.parse(window.localStorage.getItem("canvas_data")));
-      }
-      canvas.on('object:selected', function(e) {
-      window.localStorage.setItem("canvas_data",JSON.stringify(canvas));
-      var activeObject = e.target._objects[1];
-      document.onkeydown = function(ev) {
-            if (ev.target.tagName =="BODY")
-            {
-              ev = ev || window.event;
-              add_text(ev,activeObject);
-              canvas.renderAll();
-              ev.stopPropagation();
-            }
-        };
-      });
-      console.log(window.canvas);
-      function add_text(ev,activeObject)
-      {
-        chr = ev.keyCode;
-        var text="sample text";
-        var character =  String.fromCharCode(chr);
-        var changeRadius=false;
-        if (activeObject && activeObject.type === 'text') 
+        case 8:
+        case 46:
+        changeRadius=true;
+        text  = activeObject.text.slice(0, -1);
+        break;
+        default:
+        if((chr >48 && chr < 91 ) || (chr > 95 && chr <106 ) || chr ==16 || chr ==13 || chr ==32 )
         {
-          switch(chr)
+          if(chr >64 && chr < 91 )
           {
-            case 8:
-            case 46:
-              changeRadius=true;
-              text  = activeObject.text.slice(0, -1);
-              break;
-            default:
-              if((chr >48 && chr < 91 ) || (chr > 95 && chr <106 ) || chr ==16 || chr ==13 || chr ==32 )
-              {
-                if(chr >64 && chr < 91 )
-                {
-                  character =  (ev.shiftKey==true)? String.fromCharCode(chr) :String.fromCharCode(chr+32);
-                  text = activeObject.text + character;
-                }
-                else if(chr == 13 )
-                {
-                  character ="\r\n";
-                  text = activeObject.text + character;
-                }
-                else
-                {
-                  text = activeObject.text + character;;
-                }
-                changeRadius=true;
-              }
-              else
-              {
-                text = activeObject.text;
-              }
+            character =  (ev.shiftKey==true)? String.fromCharCode(chr) :String.fromCharCode(chr+32);
+            text = activeObject.text + character;
           }
-          activeObject.setText(text);
-          if(changeRadius)
+          else if(chr == 13 )
           {
-            var circle_width = 50;
-            circle_width = ( activeObject.width >100)? (activeObject.width/2)+20 : 50;
-
-            var circle_height = 50;
-            circle_height = ( activeObject.height >100)? (activeObject.height/2)+20 : 50;
-
-            var circle_radius = circle_width > circle_height ? circle_width : circle_height;
-
-            activeObject.group._objects[0].setRadius(circle_radius);
+            character ="\r\n";
+            text = activeObject.text + character;
           }
+          else
+          {
+            text = activeObject.text + character;;
+          }
+          changeRadius=true;
+        }
+        else
+        {
+          text = activeObject.text;
         }
       }
-      document.getElementByClass('.')
-    };
-
-  </script>
-  <script src="/templates/rajesh/js/custom.js"></script>
-  <script src="/templates/rajesh/js/colorpicker-app.js"></script>
-
-
- <!--  <label id="themeSettings" class="btn btn-danger" >Theme Settings</label>
-  <label id="getPdf" class="btn btn-success" >Get PDF</label> -->
-  <div class="btn-group" id="settings-container">
-    <button id="themeSettings" class="btn btn-warning">Theme Settings</button>
-    <button id="getPdf" class="btn btn-primary">Get PDF</button>
+      activeObject.setText(text);
+      if(changeRadius)
+      {
+        var circle_width = 50;
+        circle_width = ( activeObject.width >100)? (activeObject.width/2)+20 : 50;
+        var circle_height = 50;
+        circle_height = ( activeObject.height >100)? (activeObject.height/2)+20 : 50;
+        var circle_radius = circle_width > circle_height ? circle_width : circle_height;
+        activeObject.group._objects[0].setRadius(circle_radius);
+      }
+    }
+  }
+  canvas.on("after:render", function(){canvas.calcOffset();});
+};
+</script>
+<script src="/templates/rajesh/js/custom.js"></script>
+  <div class="settings">
+    <label id="themeSettings" class="btn btn-danger" >Add New Widgets</label>
+    <label id="getPdf" class="btn btn-success" >Get PDF</label>
+    <div class="hide selectionPlace">
+      <div class="setting-arrow-up"></div>
+      <ul class="settings_styles">
+        <li><a><p><img src="/templates/nandu/img/style1x.jpg"></p><p class="setting-text">Objective</p></a></li>
+        <li><a><p><img src="/templates/nandu/img/style2x.jpg"></p><p class="setting-text">Education</p></a></li>
+        <li><a><p><img src="/templates/nandu/img/style1x.jpg"></p><p class="setting-text">Activity</p></a></li>
+      </ul>
+      <a href="#" class="btn btn-default" id="cp4" data-color-format="hex" data-color="rgb(255, 255, 255)" data-colorpicker-guid="4">Change Text color</a>
+    </div>
   </div>
-
-  <div class="hide selectionPlace">
-    <select class="addType">
-      <option value=""> -- Select Style -- </option>
-      <option value="Objective">Objective Style</option>
-      <option value="Education">Education Style</option>
-      <option value="Activity">Activity Style</option>
-    </select>
-    <button class="addRow btn btn-default">Add</button>
-        <a href="#" class="btn small bscp" id="cp4" data-color-format="hex" data-color="rgb(255, 255, 255)" data-colorpicker-guid="4">Change Text color</a>
-  </div>
-  <div id="template_content">
-
+<div id="template_content">
   <% if @cv %>
-    <%=raw URI.unescape(@cv.content)%>
+  <%=raw URI.unescape(@cv.content)%>
   <% else %>
-    <div class="container main">
-      
-      <div class="row header">
-        <div class="span12">
-          <div class="row name">
-            Rajesh V
-          </div>
-          <div class="row position">
-            MBA FINANCE &amp; HR
-          </div>
+  <div class="container main">
+
+    <div class="row header">
+      <div class="span12">
+        <div class="row name">
+          Rajesh V
+        </div>
+        <div class="row position">
+          MBA FINANCE &amp; HR
         </div>
       </div>
-
-      <div class="row mLeft0">
-        <div class="span12 ">
-          <div class="row title ">
-            <span data-mercury="full">Career Objective</span>
-            </div>
-          <div class="row content" data-mercury="full">
-            To earn a job which provides me job satisfaction and self-development and succeed in an environment of growth and excellence that will help me achieve personal as well as organizational goals. </div>
+    </div>
+    <div class="row mLeft0">
+      <div class="span12 ">
+        <div class="row title ">
+          <span data-mercury="full">Career Objective</span>
+        </div>
+        <div class="row content" data-mercury="full">
+          To earn a job which provides me job satisfaction and self-development and succeed in an environment of growth and excellence that will help me achieve personal as well as organizational goals. </div>
         </div>
       </div>
-
       <div class="row records first">
         <div class="span12 ">
           <div class="row title ">
@@ -222,15 +207,14 @@
             </div>
           </div>
           <div class="toShow">
-              <span class="icon-arrow-up up-records" title="Move Up"></span>
-              <span class="icon-arrow-down down-records" title="Move Down"></span>
-              <span class="icon-plus-sign add-education" title="Add New"></span>
-              <span class="icon-remove-sign remove-education" title="Remove Last"></span>
+            <span class="icon-arrow-up up-records" title="Move Up"></span>
+            <span class="icon-arrow-down down-records" title="Move Down"></span>
+            <span class="icon-plus-sign add-education" title="Add New"></span>
+            <span class="icon-remove-sign remove-education" title="Remove Last"></span>
           </div>
         </div>
         <div class="hide this_record">x</div>
       </div>
-
       <div class="row records">
         <div class="span12 ">
           <div class="row title ">
@@ -259,15 +243,14 @@
             </div>
           </div>
           <div class="toShow">
-              <span class="icon-arrow-up up-records" title="Move Up"></span>
-              <span class="icon-arrow-down down-records" title="Move Down"></span>
-              <span class="icon-plus-sign add-experience" title="Add New"></span>
-              <span class="icon-remove-sign remove-experience" title="Remove Last"></span>
+            <span class="icon-arrow-up up-records" title="Move Up"></span>
+            <span class="icon-arrow-down down-records" title="Move Down"></span>
+            <span class="icon-plus-sign add-experience" title="Add New"></span>
+            <span class="icon-remove-sign remove-experience" title="Remove Last"></span>
           </div>
         </div>
         <div class="hide this_record">x</div>
       </div>
-
       <div class="row records">
         <div class="span12 ">
           <div class="row title ">
@@ -275,22 +258,21 @@
           </div>
           <div class="row content">
             <div class="offset2 span9 borderLeft mLeft136">
-                  <ul class="type-list activities" data-mercury="full">
-                    <li>Internship at Tamilnadu Zari Limited</li>
-                    <li>Received training in all the functional departments of the organisation.</li>
-                  </ul>
+              <ul class="type-list activities" data-mercury="full">
+                <li>Internship at Tamilnadu Zari Limited</li>
+                <li>Received training in all the functional departments of the organisation.</li>
+              </ul>
             </div>
           </div>
           <div class="toShow">
-              <span class="icon-arrow-up up-records" title="Move Up"></span>
-              <span class="icon-arrow-down down-records" title="Move Down"></span>
-              <span class="icon-plus-sign add-activities" title="Add New"></span>
-              <span class="icon-remove-sign remove-activities" title="Remove Last"></span>
+            <span class="icon-arrow-up up-records" title="Move Up"></span>
+            <span class="icon-arrow-down down-records" title="Move Down"></span>
+            <span class="icon-plus-sign add-activities" title="Add New"></span>
+            <span class="icon-remove-sign remove-activities" title="Remove Last"></span>
           </div>
         </div>
         <div class="hide this_record">x</div>
       </div>
-
       <div class="row records">
         <div class="span12 ">
           <div class="row title ">
@@ -298,25 +280,24 @@
           </div>
           <div class="row content">
             <div class="offset2 span9 borderLeft mLeft136">
-                  <ul class="type-list ivs" data-mercury="full">
-                    <li>Parle products pvt ltd, bangalore</li>
-                    <li>Hindustan machine tools ltd, kerala</li>
-                    <li>Incense International in Ranipet</li>
-                    <li>Neycer, Vadalur</li>
-                    <li>TAFE, Maraimalai Nagar</li>
-                  </ul>
+              <ul class="type-list ivs" data-mercury="full">
+                <li>Parle products pvt ltd, bangalore</li>
+                <li>Hindustan machine tools ltd, kerala</li>
+                <li>Incense International in Ranipet</li>
+                <li>Neycer, Vadalur</li>
+                <li>TAFE, Maraimalai Nagar</li>
+              </ul>
             </div>
           </div>
           <div class="toShow">
-              <span class="icon-arrow-up up-records" title="Move Up"></span>
-              <span class="icon-arrow-down down-records" title="Move Down"></span>
-              <span class="icon-plus-sign add-ivs" title="Add New"></span>
-              <span class="icon-remove-sign remove-ivs" title="Remove Last"></span>
+            <span class="icon-arrow-up up-records" title="Move Up"></span>
+            <span class="icon-arrow-down down-records" title="Move Down"></span>
+            <span class="icon-plus-sign add-ivs" title="Add New"></span>
+            <span class="icon-remove-sign remove-ivs" title="Remove Last"></span>
           </div>
         </div>
         <div class="hide this_record">x</div>
       </div>
-
       <div class="row records">
         <div class="span12 ">
           <div class="row title ">
@@ -324,43 +305,41 @@
           </div>
           <div class="row content">
             <div class="offset2 span9 borderLeft mLeft136">
-                  <ul class="type-list skills" data-mercury="full">
-                    <li>Decision Making ability</li>
-                    <li>Good Communication skills</li>
-                    <li>Team Player</li>
-                    <li>Self Motivation</li>
-                    <li>Time Management</li>
-                  </ul>
+              <ul class="type-list skills" data-mercury="full">
+                <li>Decision Making ability</li>
+                <li>Good Communication skills</li>
+                <li>Team Player</li>
+                <li>Self Motivation</li>
+                <li>Time Management</li>
+              </ul>
             </div>
           </div>
           <div class="toShow">
-              <span class="icon-arrow-up up-records" title="Move Up"></span>
-              <span class="icon-arrow-down down-records" title="Move Down"></span>
-              <span class="icon-plus-sign add-skills" title="Add New"></span>
-              <span class="icon-remove-sign remove-skills" title="Remove Last"></span>
+            <span class="icon-arrow-up up-records" title="Move Up"></span>
+            <span class="icon-arrow-down down-records" title="Move Down"></span>
+            <span class="icon-plus-sign add-skills" title="Add New"></span>
+            <span class="icon-remove-sign remove-skills" title="Remove Last"></span>
           </div>
         </div>
         <div class="hide this_record">x</div>
       </div>
-
       <div class="row records last">
         <div class="span12 ">
           <div class="row title ">
             <span data-mercury="full">Interests</span>
           </div>
           <div class="row content">
-           <canvas id="my-canvas" width="890" height="400"></canvas>
+            <canvas id="my-canvas" width="890" height="400"></canvas>
           </div>
           <div class="toShow">
-              <span class="icon-arrow-up up-records" title="Move Up"></span>
-              <span class="icon-arrow-down down-records" title="Move Down"></span>
-              <span class="icon-plus-sign add-interest" title="Add New"></span>
-              <span class="icon-remove-sign remove-interest" title="Remove Last"></span>
+            <span class="icon-arrow-up up-records" title="Move Up"></span>
+            <span class="icon-arrow-down down-records" title="Move Down"></span>
+            <span class="icon-plus-sign add-interest" title="Add New"></span>
+            <span class="icon-remove-sign remove-interest" title="Remove Last"></span>
           </div>
         </div>
         <!-- <div class="hide this_record">x</div> -->
       </div>
-
       <div class="row footer">
         <div class="span12">
           <div class="row space">
@@ -370,8 +349,8 @@
                   <img width="75" align="top" src="/templates/rajesh/img/address.png" />
                 </div>
                 <div class="span2 contact">
-                    <span class="heading">Address</span>
-                    <span class="value " data-mercury="full">No: 131, T.K Nambi Street, Kanchipuram - 631 501.</span>
+                  <span class="heading">Address</span>
+                  <span class="value " data-mercury="full">No: 131, T.K Nambi Street, Kanchipuram - 631 501.</span>
                 </div>
               </div>
             </div>
@@ -400,13 +379,11 @@
           </div>
         </div>
       </div>
-
     </div>
-  <% end %>
+    <% end %>
   </div>
-
   <script type="text/javascript">
-      $(document).ready(function(){
-        $(".mercury-statusbar").hide();
-      });
+  $(document).ready(function(){
+    $(".mercury-statusbar").hide();
+  });
   </script>

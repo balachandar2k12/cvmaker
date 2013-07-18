@@ -1,121 +1,152 @@
-body{
-		font-family: 'Merriweather Sans';
-		padding-top:0px;
-	}
-	*[data-mercury]{
-		overflow: visible !important;
-	}
-#header{
-	background:#000000;
-	min-height: 130px;
+body {
+    font-family:'Merriweather Sans';
+    padding-top:0px;
 }
-.heading{
-	font-family: 'Fjalla One';
-	font-size: 50px;
-	text-transform: uppercase;
-	margin-top: 40px;
-	color: #CCC;
-
-}
-#get-pdf{
-	top: 0;
-	right:0;
-	position:fixed;
+*[data-mercury] {
+    overflow: visible !important;
 }
 
-.tagline{
-	font-size: 18px;  
-	font-family: 'Merriweather Sans';
-color: #888888;
-margin-top: -10px;
+#header {
+    background:#000000;
+    min-height: 130px;
 }
-.blue_bar{
-	background:#34a2aa;
-	height: 10px;
-	display: block;
-	width: 100%;
+.heading {
+    font-family:'Fjalla One';
+    font-size: 50px;
+    text-transform: uppercase;
+    margin-top: 40px;
+    color: #CCC;
 }
-
-#main{
-	margin-top:30px;
+#get-pdf {
+    top: 0;
+    right:0;
+    position:fixed;
 }
-.photo_fade{
-background: url(img/profile_dropshadow.png) -1px 171px;
-display: block;
-height: 14px;
-margin-left: 0px;
-background-size: 100%;
+.tagline {
+    font-size: 18px;
+    font-family:'Merriweather Sans';
+    color: #888888;
+    margin-top: -10px;
 }
-.category_field{
-	background: #EEE;
+.blue_bar {
+    background:#34a2aa;
+    height: 10px;
+    display: block;
+    width: 100%;
 }
-.category_heading{
-	background: #333333;
+#main {
+    margin-top:30px;
 }
-.category_content{
-padding:10px;}
-.category_content ul{
-	margin:0px;
-	list-style: none;
+.photo_fade {
+    background: url(img/profile_dropshadow.png) -1px 171px;
+    display: block;
+    height: 14px;
+    margin-left: 0px;
+    background-size: 100%;
 }
-.category_content ul li{
-	background: url(img/li_bg.png) no-repeat left;
-	background-size: 25px;
-	padding-left: 30px;
-	line-height: 30px;
-	margin-bottom: 10px;
+.category_field {
+    background: #EEE;
 }
-.category_content ul li:hover{
-	background: url(img/li_bg_hover.png) no-repeat left;
-	background-size: 25px;
+.category_heading {
+    background: #000000;
 }
-.category_heading h3{
-	font-family: 'Fjalla One';
-color: white;
-font-size: 20px;
-padding: 5px 30px;
+.category_content {
+    padding:10px;
 }
-.category_shadow{
-background: url(img/para_dropshadow.png) no-repeat;
-height: 25px;
-background-size: 100%;
+.category_content ul {
+    margin:0px;
+    list-style: none;
 }
-.contact_info{
-	list_style:none;
+.category_content ul li {
+    background: url(img/li_bg.png) no-repeat left;
+    background-size: 25px;
+    padding-left: 30px;
+    line-height: 30px;
+    margin-bottom: 10px;
 }
-
-.contact_info li{
-	list-style: none;
-	padding-left: 50px;
-	color:#aaa5a2;
-	line-height: 37px;
+.category_content ul li:hover {
+    background: url(img/li_bg_hover.png) no-repeat left;
+    background-size: 25px;
 }
-.contact_info li:first-child{
-background: url(img/message.png) left no-repeat;
-background-size: 34px;
-
+.category_heading h3 {
+    font-family:'Fjalla One';
+    color: white;
+    font-size: 20px;
+    padding: 5px 30px;
 }
-.contact_info li:nth-child(2){
-background: url(img/phone.png) left no-repeat;
-background-size: 34px;
+.category_shadow {
+    background: url(img/para_dropshadow.png) no-repeat;
+    height: 25px;
+    background-size: 100%;
 }
-.contact_info li:nth-child(3){
-background: url(img/website.png) left no-repeat;
-background-size: 34px;
-
+.contact_info {
+    list_style:none;
 }
-.ui-progressbar{
-	height: 15px !important;
-	cursor: pointer;
-	background:url(img/progressbar_bg.png) !important;
+.contact_info li {
+    list-style: none;
+    padding-left: 50px;
+    color:#aaa5a2;
+    line-height: 37px;
+}
+.contact_info li:first-child {
+    background: url(img/message.png) left no-repeat;
+    background-size: 34px;
+}
+.contact_info li:nth-child(2) {
+    background: url(img/phone.png) left no-repeat;
+    background-size: 34px;
+}
+.contact_info li:nth-child(3) {
+    background: url(img/website.png) left no-repeat;
+    background-size: 34px;
+}
+.ui-progressbar {
+    height: 15px !important;
+    cursor: pointer;
+    background:url(img/progressbar_bg.png) !important;
 }
 .ui-progressbar .ui-progressbar-value {
-		background:url(img/progressbar_fg.png);
-
+    background:url(img/progressbar_fg.png);
 }
-@media print{
-	.category_field{
-	background: #EEE;
+@media print {
+    .category_field {
+        background: #EEE;
+    }
 }
 
+
+/* Settings */
+.settings {
+    top: 0;
+    right: 0;
+    position: fixed;
+    z-index: 5;
+}
+.hidden {
+    visibility: hidden;
+    display: none;
+}
+.setting-arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 11px solid #9999A3;
+    margin: 0 auto;
+}
+.selectionPlace {
+    width: 250px;
+    position: fixed;
+    right: 0px;
+    background: #9999A3;
+    text-align: center;
+    border-radius: 10px;
+    height: 100px;
+    top: 30px;
+    z-index: 1;
+    margin-top: 9px;
+}
+.addType {
+    margin-top: 11px;
+    width: 135px;
 }

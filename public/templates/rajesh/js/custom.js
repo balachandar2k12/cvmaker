@@ -2,21 +2,21 @@ $(document).ready(function(){
 
 var i=0;
 // Theme Settings
-	$("#themeSettings").click(function () {
-		$(".selectionPlace").slideToggle( 400 , "swing" , function(){
-		// console.log("doneee");
-		});
-		if($("#themeSettings").html()=="Theme Settings")
-		{
-		$("#themeSettings").html("Close Settings");
-		}
-		else
-		{
-		$("#themeSettings").html("Theme Settings");
-		}
-
-	});
-
+    $("#themeSettings").click(function() {
+        $(".selectionPlace").slideToggle(400, "swing", function() {
+            if ($("#themeSettings").html() == "Add New Widgets") {
+                $("#themeSettings").html("Close");
+                $(".setting-arrow-up").animate({
+                    marginTop: "-10px"
+                }, 500);
+            } else {
+                $("#themeSettings").html("Add New Widgets");
+                $(".setting-arrow-up").animate({
+                    marginTop: "0px"
+                }, 500);
+            }
+        });
+    });
 // add interst
 	$(document).on("click",".add-interest",function(){
 		var maxLeft=650,minLeft=250;
@@ -54,6 +54,7 @@ var i=0;
 			     // canvas.renderAll();
 		 	}
 		 }
+		 canvas.renderAll();
 	});
 
 // Get random color
@@ -79,8 +80,8 @@ var i=0;
 	});
 
 //Add Row with Type
-	$(document).on("click",".addRow",function(){
-	 	Type=$(".addType").val();
+    $(document).on("click", ".settings_styles li", function() {
+        Type = $(this).find(".setting-text").text();
 	 	if(Type=="")
 	 		alert("Please Select Style..");
 	 	else
@@ -105,7 +106,6 @@ var i=0;
 							record += '</div>';
 							record += '<div class="hide this_record">x</div>';
 							record += '</div>';
-							console.log('data-mercury=full');
 							$(".records:last").after(record);
 							// $(".main").append(record);
 							break;
@@ -402,7 +402,6 @@ function generate_script (type, class_name) {
 			var record='<li>Sample Text</li>';
 		 	$(".skills").append(record);
 		 	current_color = $(".title,.title p,.highlight").css("color");
-			// console.log(current_color);
 			$(".title,.title p,.highlight").css("color",current_color);
 		});
 		$(document).on("click",".remove-skills",function(){
@@ -414,7 +413,6 @@ function generate_script (type, class_name) {
 
 // Up Down
 	$(document).on("click",".down-records",function(){
-		console.log('moving down');
 		var current =$(this).closest(".records");
 		if(!current.hasClass("last"))
 		{
@@ -422,6 +420,8 @@ function generate_script (type, class_name) {
 			current.insertAfter($after);
 			changeFirstLast();
 		}
+		 canvas.renderAll();
+
 	});
 	$(document).on("click",".up-records",function(){
 		console.log('moving up');
@@ -432,7 +432,18 @@ function generate_script (type, class_name) {
 	    	current.insertBefore($before);
 	    	changeFirstLast();	
 	    }
+		 canvas.renderAll();
+
 	});
+    $('#cp4').colorpicker().on('changeColor', function(ev) {
+        color = ev.color.toHex();
+        $(".name,.position,.title,.heading").css("color", color);
+        $(".name").css("border-bottom", "10px solid " + color);
+        $(".position").css("border-bottom", "5px solid " + color);
+        $(".borderLeft").css("border-left", "4px solid " + color);
+        $(".footer").css("border-bottom", "10px solid " + color);
+        $(".footer").css("border-top", "5px solid " + color);
+    });
 
 
 	function changeFirstLast() {
