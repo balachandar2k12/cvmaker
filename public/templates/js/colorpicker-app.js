@@ -66,18 +66,6 @@
     // App
     $(function() {
         root.prettyPrint && prettyPrint()
-        $('#cp1').colorpicker({
-            format: 'hex'
-        });
-        $('#cp2').colorpicker();
-        $('#cp3').colorpicker();
-        var bodyStyle = $('body')[0].style;
-        $('#cp4').colorpicker().on('changeColor', function(ev) {
-            color = ev.color.toHex();
-            $(".title,.title p,.highlight,.head .name").css("color",color);
-            $(".name-bg").css("background",color);
-            // console.log(ev.color.toHex());
-        });
 
         try {
             // load latest commits under a try to not paralize the app
